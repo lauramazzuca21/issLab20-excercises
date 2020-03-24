@@ -90,7 +90,7 @@ suspend private fun sendJSON_message(msg : String){
 suspend private fun forward( msgContent : String ){
 //	println("virtualRobotSupport | forward $msgContent to $targetRobot")
 	val dataMsg   = AppMsg.create("sensor","vr","robotactor","$msgContent")
-	targetRobot.send( dataMsg.toString() )  
+	targetRobot.send( dataMsg.toString() )
 }
 	
 	
