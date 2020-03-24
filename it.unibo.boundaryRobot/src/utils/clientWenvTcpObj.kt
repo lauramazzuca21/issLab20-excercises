@@ -25,7 +25,7 @@ object clientWenvTcpObj {
             hostName         = hostNameStr
             port             = Integer.parseInt(portStr)
              try {
-                 val clientSocket = Socket(hostName, port)
+                 val clientSocket = Socket(hostName, port) 
                  println("clientWenvTcp |  CONNECTION DONE")
                  inFromServer = BufferedReader(InputStreamReader(clientSocket.getInputStream()))
                  outToServer  = PrintWriter(clientSocket.getOutputStream())
@@ -88,7 +88,7 @@ suspend fun sendSomeCommand(   ) {
     clientWenvTcpObj.initClientConn( )
     var jsonString  : String
 	val time = 1300
-//    for (i in 1..2) {
+    for (i in 1..3) {
         jsonString = "{ 'type': 'moveForward', 'arg': $time }"
          clientWenvTcpObj.sendMsg(jsonString)
          delay(1000)
@@ -96,7 +96,7 @@ suspend fun sendSomeCommand(   ) {
         jsonString = "{ 'type': 'moveBackward', 'arg': $time }"
          clientWenvTcpObj.sendMsg(jsonString)
          delay(1000)
-//    }
+    }
 }
  
 fun main( ) = runBlocking {
