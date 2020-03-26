@@ -2,21 +2,30 @@
 <projectDescription>
 	<name>it.unibo.boundaryRobot</name>
 	<comment></comment>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
-	</natures>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.jetbrains.kotlin.ui.kotlinBuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<arguments>
+			</arguments>
 		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
+	</natures>
 	<linkedResources>
 		<link>
 			<name>kotlin_bin</name>
@@ -24,5 +33,4 @@
 			<locationURI>org.jetbrains.kotlin.core.filesystem:/it.unibo.boundaryRobot/kotlin_bin</locationURI>
 		</link>
 	</linkedResources>
-	<filteredResources/>
 </projectDescription>
