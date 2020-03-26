@@ -1,6 +1,7 @@
 package utils
 
 import kotlinx.coroutines.channels.SendChannel
+import fsm.Fsm
 
 object Messages{
 
@@ -21,6 +22,15 @@ object Messages{
 	 	//println("forward msg: ${msg} ")
 	 	dest.send( msg  ) 
 	}
+	
+	@kotlinx.coroutines.ObsoleteCoroutinesApi
+	@kotlinx.coroutines.ExperimentalCoroutinesApi
+	suspend fun forward(  msg : AppMsg, dest : Fsm ){
+	 	//println("forward AppMsg msg: ${msg} ")
+	 	if( ! dest.fsmactor.isClosedForSend) dest.fsmactor.send( msg  )
+		else println("WARNING: Messages.forward attempts to send ${msg} to closed ${dest.name} ")
+	}
+	
 //	suspend fun forward(  dest : SendChannel<String>, msgId : String, msgContent : String   ){
 //		val m = AppMsg( msgId, AppMsgType.dispatch.toString(), "sender", dest)
 //	}
