@@ -150,14 +150,18 @@ table, th, td {
     
 <body>
 <div id="top">
-<h1>RobotActorBoundary | Reviewed<font size="5"></font> </h1>
+<h1>RobotActorBoundary | From test plans to a layered architecture<font size="5"></font> </h1>
 </div>  
 
 <div class="body"> 
  
 <h2>Introduction</h2>
 This report follows the first SPRINT review meeting related to the <a href="RobotActorBoudary" target="code">RobotActorBoudary</a> project.
-We report here also more 
+After this review, we will propose a new layered architecture that solved the robotboundary problem by means of a set of
+actors, whose behavior is expressed as a Finite State Machine using the custom DSL language introduced in
+<a href="http://htmlpreview.github.com/?https://github.com/anatali/iss2020LabBo/blob/master/it.unibo.actorfsm/userDocs/Fsm.html#fig1" target="web"> 	
+FSM | A kotlin-based DSL</a> 
+
 <!--
  Remember our motto:<br/>   <k>there is no code without a project, no project
 without problem analysis and no problem without requirements</k>.
@@ -358,7 +362,8 @@ assertTrue( <ks>mapUtil</ks>.map.toString() ==  <bc>refTestMap</bc> )
 
 <h2>Project</h2> 
 Taking into account the results of our problem analysts, we propose now:
-<h3>A new layered logical architecture</h3>
+
+<h3 id="fig1">A new layered logical architecture (Fig. 1)</h3>
 
 <center><img src="./img/layered1.png" alt="layered1" width="80%" ></center>
  
@@ -368,46 +373,34 @@ Taking into account the results of our problem analysts, we propose now:
  <h3>BEHAVIOR</h3>
 In order to express the behavior of each actor as a
  <a href="https://en.wikipedia.org/wiki/Moore_machine" target="web">Moore's Finite State Machine</a>
- we can introduce a proper language-support by exploiting the Kotlin capabilities to define custom 'internal' DSL.
- <br/><br/>
- According to the support defined in
- <a href="FSM.html" target="code">FSM.html</a>, the application designer must define two operations:
-
- <pre>
-<m> 
- 	override fun <ks>getInitialState() </ks>: String{
-		return "s0"
-	}
-
- 	override fun <ks>getBody() : (Fsm.() -> Unit)</ks>{
-		return {
-			<k>state</k>("s0") {
-				<k>action</k> {  
-					println(" ... ")
- 				}
-				<k>transition</k>( edgeName="t0",targetState="s1", cond=doswitch() )			<kc>//empty move</kc>
-				
-			}			
-			<k>state</k>("s1") {
-				<k>action</k> {
-					...
-				}
-				<k>transition</k>( edgeName="t1",targetState="s2",   cond=whenDispatch("msg1") )
-				<k>transition</k>( edgeName="t2",targetState="s3", cond=whenDispatch("msg2") )
-			}
-			...
- 		} 
-	} 
-</m>
- </pre>
+ we will introduce a proper language-support by exploiting the Kotlin capabilities to define custom 'internal' DSL:
+ see <a href="http://htmlpreview.github.com/?https://github.com/anatali/iss2020LabBo/blob/master/it.unibo.actorfsm/userDocs/Fsm.html" target="web"> 	
+Work to do</a>
+<br/>
  
- <br/>
-Examples are reported in 
- <a href="../src/fsm/FsmUsage.kt" target="code">fsm/FsmUsage.kt</a> 
- and
- <a href="../src/stepper/robotstepperfsm.kt" target="code">fsm/robotstepperfsm.kt</a> 
-<br/><br/>
-TO BE CONTINUED ...
+
+<h1 id="todo">WORK TO DO</h1>
+ 
+<ol>
+<li>Design, build and test the <bc>basicrobot</bc> of <a href="#fig1">Fig1</a> by specifying its behavior with 
+the custom DSL language  provided by <a href="../src/fsm/Fsm.kt" target="code">fsm/Fsm.kt</a> </li>
+<li>Design, build and test the <bc>stepper</bc>  of <a href="#fig1">Fig1</a>,
+by specifying its behavior with 
+the custom DSL language provided by <a href="../src/fsm/Fsm.kt" target="code">fsm/Fsm.kt</a>
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+<h3>stepper</h3>
+<center><img src="./img/stepper.png" alt="stepper" width="100%" ></center>
+</td>
+<td><h3>timer</h3>
+<center><img src="./img/timer.png" alt="timer" width="100%" ></center></td>
+</tr>
+</table>
+
+ </li>
+</ol>
+ 
 
 
 <div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
