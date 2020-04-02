@@ -38,7 +38,7 @@ class basicrobot ( name: String, scope: CoroutineScope,
 					//virtualRobotSupportApp.traceOn = true
 					virtualRobotSupportApp.setRobotTarget( myself  ) //Configure - Inject
 					virtualRobotSupportApp.initClientConn()
-					fsm.traceOn = false
+					fsm.traceOn = true
 					rstate = basicrobotstate.stop
 					println("$ndnt basicrobot | STARTED in LOGICAL state=$rstate")
 				}

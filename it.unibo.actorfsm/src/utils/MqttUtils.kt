@@ -5,7 +5,7 @@ import org.eclipse.paho.client.mqttv3.*
 import utils.AppMsg
 import fsm.Fsm
 
-var mqtttraceOn = false
+var mqtttraceOn = true
 
 class MqttUtils(val owner: String )  {
  	protected var eventId: String? = "mqtt"
@@ -17,7 +17,7 @@ class MqttUtils(val owner: String )  {
 			
 	
 	fun trace( msg : String ){
-		if( mqtttraceOn ) trace("$msg")
+		if( mqtttraceOn ) println("$msg")
 	}
 	
 	fun connect(clientid: String, brokerAddr: String ): Boolean {
