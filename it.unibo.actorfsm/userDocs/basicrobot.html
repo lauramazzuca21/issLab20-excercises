@@ -181,7 +181,8 @@ layered architecture</a>
 With reference to our
 <a href="http://htmlpreview.github.com/?https://github.com/anatali/iss2020LabBo/blob/master/it.unibo.boundaryRobot/userDocs/RobotActorBoundary.html#req" target="web"> 	
 first actor-based robot-application</a>,
-the requirement consists in exploiting a precise technology (the custom DSL language described in <a href="FSM.html" target="code">FSM.html</a>) to 
+the requirement consists in exploiting a precise technology (the custom DSL language <a href="../src/fsm/Fsm.kt" target="code">fsm/Fsm.kt</a> 
+described in <a href="FSM.html" target="code">FSM.html</a>) to 
 express the behavior of the actor as a (message-based) Finite State Machine.
  
 
@@ -217,7 +218,7 @@ From now on:
 with the term<bc> event</bc> we will denote information emitted by an actor without any explicit destination.
 </div> 
 
-https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/
+<!-- https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/ -->
 
 <h2>Test plans</h2> 
 <table style="width:100%" border="1">
@@ -254,18 +255,19 @@ fun testObstacle(){
   }
 }</m>
 </pre>
-For a more complete testin code see
-<a href="../src/robotAppl/testBasicrobot.kt"  target="code">testBasicrobot.kt</a>
+For a more complete testing code see
+<a href="../backup/testBasicrobot.kt"  target="code">testBasicrobot.kt</a>
 </td>
 </tr>
 </table> 
  
 <h2>Project</h2> 
+The  full code is reported in  <a href="../src/robotAppl/basicrobot.kt" target="code">robotAppl/basicrobot.kt</a> (project <i>it.unibo.actorfsm</i>).
 <table style="width:100%" border="1">
 <tr>
 <td style="width:60%">
-<m>The basicrobot is a specialized verion of the class  <a href="../src/fsm/Fsm.kt" target="code">fsm/Fsm.kt</a> <br/>
-<center><img src="./img/basicrobot.png" alt="basicrobota" width="40%" ></center>
+<m>The basicrobot is a specialized version of the class  <a href="../src/fsm/Fsm.kt" target="code">fsm/Fsm.kt</a> <br/>
+<center><img src="./img/basicrobot.png" alt="basicrobota" width="60%" ></center>
 
 <br/>
 Its behavior can be modeled as a Finite State Machine:
@@ -282,8 +284,20 @@ The code is in <a href="../src/robotAppl/basicrobot.kt" target="code">basicrobot
 </m>
 </td>
 <td>
-<m>The state diagram on the left is mirrored in the structure of the code, thanks to the 
- DSL language described in <a href="FSM.html" target="code">FSM.html</a>
+<m> The <a href="../src/robotAppl/basicrobot.kt" target="code">basicrobot</a> class is defined as follows:
+<pre>
+class basicrobot ( name: String, scope: CoroutineScope,
+				   usemqtt:Boolean=false,
+				   val <k>owner</k>: Fsm?=null,
+				   discardMessages:Boolean=true
+				 ) : <a href="../src/fsm/Fsm.kt" target="code"><ks>Fsm</ks></a>( name, scope, discardMessages,usemqtt){
+</pre>
+
+The optional property <k>owner</k> is a reference to the actor that uses the <tt>basicrobot</tt>.
+<br/><br/>
+The state diagram on the left is mirrored in the structure of the code, thanks to the 
+<a href="../src/fsm/Fsm.kt" target="code"><ks>DSL language</ks></a>
+introduced in <a href="FSM.html" target="code">FSM.html</a>
 <pre> 
 override fun getBody() : (Fsm.() -> Unit){	
  return {  
@@ -327,9 +341,14 @@ override fun getBody() : (Fsm.() -> Unit){
 <td>
 <m>
 <pre>
-lateinit var <k>robot</k>     : Fsm
- 
-<ks>Messages.forward</ks>( "user","cmd", "r", <k>robot</k>   )
+<kc>//The owner  can write</kc>
+lateinit var <k>robot</k> : <a href="../src/fsm/Fsm.kt" target="code"><ks>Fsm</ks></a>
+val msg = ApplMsg.buildDispatch( ... )
+<k>forward( msg, robot )</k>
+
+
+<kc>//A main program can write</kc>
+<k>Messages.forward</k>( "user","cmd", "r", <k>robot</k>   )
 </pre>
 
 See the utility  <a href="../src/utils/Messages.kt" target="code">utils/Messages.kt</a>
@@ -344,27 +363,67 @@ See the utility  <a href="../src/utils/Messages.kt" target="code">utils/Messages
 <table style="width:100%" border="1">
 <tr>
 <td style="width:50%">
-<center><img src="./img/basicrobotasFsm.png" alt="basicrobotasFsm" width="100%" ></center>
+<center><img src="./img/basicrobotMqttUsage.png" alt="basicrobotMqttUsage" width="100%" ></center>
 </td>
 <td>
 <m>
 <pre>
-val mqttAlien  	= MqttUtils("alien")
+<kc>//An 'alien' could write</kc>
+val msg = ApplMsg.buildDispatch( ... )
+<k>mqtt.publish("unibo/qak/basicrobot", msg.toString(), 0, false);</k> 
+<kc>//mqtt is the MQTT-support of type <a href="../src/utils/MqttUtils.kt" target="code"><ks>MqttUtils</ks></a> 
+<!-- defined in <a href="../src/fsm/Fsm.kt" target="code"><ks>Fsm</ks></kc> -->
+For an example, see <a href="../src/consolegui/ConsoleGui.java" target="code">consolegui/ConsoleGui.java</a>
 
-<ks>Messages.forward</ks>( "alien","cmd", "w", "basicrobot", mqttAlien   )
+<kc>//A main program can write</kc>
+val <ks>mqttMain</ks> = MqttUtils("main")
+
+<k>Messages.emit</k>( "main","alarm", "fire", <ks>mqttMain</ks> )
+
+See the utility <a href="../src/utils/Messages.kt" target="code">utils/Messages.kt</a>
+
 </pre>
-
-See the utility  <a href="../src/utils/Messages.kt" target="code">utils/Messages.kt</a>
-and <a href="../src/utils/MqttUtils.kt" target="code">MqttUtils(name)</a>
+ 
+See also <a href="FSM.html" target="code">FSM.html</a>.
 </m>
 </td>
 </tr>
 </table>
  
+<h2 id="appl">An application</h2>
+In our working <em>it.unibo.actorfsm</em> project:
+ 
 
-<!--
-<center><img src="./img/mqttBasicRobot.png" alt="mqttBasicRobot" width="80%" ></center>
- -->
+<ol>
+<li>Remove any resource using <bc>JUnit</bc> form the <bc>src</bc> directory.<br/><br/></li>
+<li>Assure that the file <a href="../src/robotAppl/sensorObserver.kt" target="code">sensorObserver.kt</a> 
+includes a <m><ks>main</ks></m> that activates the actor  with <bc>usemqtt=true</bc>.<br/><br/> </li>
+<li>Change the <tt>build.gradle</tt> according to the <a href="../build.gradle" target="code">last version</a>
+and set
+<pre>
+<k>mainClassName = 'robotAppl.<ks>S</ks>ensorObserver<ks>Kt</ks>'</k></pre>
+Remember that <i><b>Kotlin generates standard Java code</b></i>.<br/><br/></li>
+<li>Execute <bc>gradle build distZip</bc> and (remove the <tt>filter</tt> related to <i>Gradle build folder</i>) 
+look at the generated <m><k>build/distribution/it.unibo.actorfsm-1.0.zip</k></m>.<br/><br/></li>
+<li>Expand the zip file somewhere (e.g. into a <m><ks>issRun</ks></m> directory).<br/><br/></li>
+<li><bc>cd</bc> to <m><ks>issRun/it.unibo.actorfsm-1.0\bin</ks></m> and run <bc>it.unibo.actorfsm.bat</bc>
+to start the actor <a href="../src/robotAppl/sensorObserver.kt" target="code">sensorObserver.kt</a>.<br/><br/>
+</li>
+<li>Activate the <a href="../src/robotAppl/basicRobot.kt" target="code">robotAppl/basicRobot.kt</a>
+with the operation <bc>demoUsingMqtt</bc>.<br/><br/> </li>
+<li>Activate the <a href="../src/consolegui/ConsoleGui.java" target="code">consolegui/ConsoleGui.java</a>
+with <m><ks>new ConsoleGui(<bc>"basicrobot"</bc> )</ks></m> to publish commands for the actor named 'basicrobot'.
+<br/><br/> 
+<center><img src="./img/guiBrSensorObs.png" alt="guiBrSensorObs" width="80%" ></center>
+<br/><br/>  </li>
+<li>Move the robot by clicking on the buttons <tt>w|s|l|r|h</tt> (<tt>p</tt> sends a <bc>step</bc> command and will be user later on)
+so that the robot hits some obstacle, 
+and look at the output of the <a href="../src/robotAppl/sensorObserver.kt" target="code">sensorObserver.kt</a>.<br/><br/>  
+</li>
+</ol>
+ 
+
+ 
 
 <br/><br/>
 <div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
