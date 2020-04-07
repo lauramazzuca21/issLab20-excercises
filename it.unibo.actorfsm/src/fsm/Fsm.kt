@@ -341,7 +341,7 @@ INTERACTION
 	suspend fun emit(  msg : AppMsg ){
 	 	println("		*** Fsm $name | emit  msg: ${msg} usemqtt=$usemqtt")
 	    if( usemqtt ) {
-			mqtt.publish( "unibo/qak/events", msg.toString() )
+			mqtt.publish( "unibo/qak/events", msg.toString() + " Mazzuca" )
 		}else{
 		 	println("		*** Fsm $name | WARNING: Messages.emit NOT SUPPORTED without MQTT")
 		}
@@ -360,7 +360,7 @@ INTERACTION
 					println("		*** Fsm $name | attempt to connect ${mqttbrokerAddr}")
 					mqtt.connect(name, mqttbrokerAddr)
 				}
-	 		    mqtt.subscribe(this, "unibo/qak/$name")
+	 		    mqtt.subscribe(this, "unibo/qak/$name-Mazzuca")
 			    mqtt.subscribe(this, "unibo/qak/events")
 			    println("		*** Fsm $name | checkMqtt OK  ${mqttbrokerAddr}") 					
         }
