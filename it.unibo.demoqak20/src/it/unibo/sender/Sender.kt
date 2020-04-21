@@ -8,8 +8,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 	
-class Sender ( name: String, scope: CoroutineScope ) : ActorBasicFsm( name, scope){
- 	
+class Sender ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope ){
+
 	override fun getInitialState() : String{
 		return "s0"
 	}
@@ -19,8 +19,15 @@ class Sender ( name: String, scope: CoroutineScope ) : ActorBasicFsm( name, scop
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
-						delay(1000) 
-						terminate(0)
+						forward("msg1", "msg1(1)" ,"demo" ) 
+						delay(300) 
+						forward("msg1", "msg1(2)" ,"demo" ) 
+						delay(300) 
+						forward("msg1", "msg1(3)" ,"demo" ) 
+						delay(300) 
+						forward("msg2", "msg2(1)" ,"demo" ) 
+						delay(300) 
+						forward("msg2", "msg2(2)" ,"demo" ) 
 					}
 				}	 
 			}

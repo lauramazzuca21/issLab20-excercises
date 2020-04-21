@@ -8,21 +8,23 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 	
-class Sentinel ( name: String, scope: CoroutineScope ) : ActorBasicFsm( name, scope){
- 	
+class Sentinel ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope ){
+
 	override fun getInitialState() : String{
 		return "s0"
 	}
 	@kotlinx.coroutines.ObsoleteCoroutinesApi
 	@kotlinx.coroutines.ExperimentalCoroutinesApi			
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
-		var counter=0
+		 var counter=0  
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
 					}
-					 transition( edgeName="goto",targetState="watch", cond=doswitchGuarded({counter==0}) )
-					transition( edgeName="goto",targetState="end", cond=doswitchGuarded({! (counter==0) }) )
+					 transition( edgeName="goto",targetState="watch", cond=doswitchGuarded({ counter==0  
+					}) )
+					transition( edgeName="goto",targetState="end", cond=doswitchGuarded({! ( counter==0  
+					) }) )
 				}	 
 				state("watch") { //this:State
 					action { //it:State

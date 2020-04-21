@@ -2,18 +2,15 @@
 <projectDescription>
 	<name>it.unibo.actorfsm</name>
 	<comment></comment>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
-	</natures>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.jetbrains.kotlin.ui.kotlinBuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 		<buildCommand>
-<<<<<<< HEAD
 			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
 			<arguments>
 			</arguments>
@@ -29,12 +26,17 @@
 		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
-=======
+
+		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
->>>>>>> 6384804c71b0cb367c1a730abe8602ea13ea1228
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.jetbrains.kotlin.core.kotlinNature</nature>
+	</natures>
 	<linkedResources>
 		<link>
 			<name>kotlin_bin</name>
@@ -42,5 +44,4 @@
 			<locationURI>org.jetbrains.kotlin.core.filesystem:/it.unibo.actorfsm/kotlin_bin</locationURI>
 		</link>
 	</linkedResources>
-	<filteredResources/>
 </projectDescription>

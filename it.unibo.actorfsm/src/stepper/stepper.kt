@@ -65,7 +65,7 @@ lateinit var robot : Fsm
 				transition( edgeName="t4",targetState="docmd",   cond=whenDispatch("cmd") )
 			}
 /*
- WARNING: The step time could terminate just before that a detected collision is delivered
+ WARNING: The step time could terminate just before that a detected collision is perceived
  */
 			state("stepOk") {
 				//only if the virtualRobotSupportApp agree !!!

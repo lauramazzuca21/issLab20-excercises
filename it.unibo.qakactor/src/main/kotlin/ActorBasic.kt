@@ -24,19 +24,20 @@ import org.eclipse.californium.core.coap.MediaTypeRegistry
 
 abstract class  ActorBasic(  name:         String,
                            val scope:        CoroutineScope = GlobalScope,
+                           var discardMessages : Boolean = false, 
                            val confined :    Boolean = false,
                            val ioBound :     Boolean = false,
                            val channelSize : Int = 50
                         ) : CoapResource(name), MqttCallback {
     //val cpus = Runtime.getRuntime().availableProcessors();
 
-    val tt      = "              %%% "
+    val tt      = "               %%% "
     var context : QakContext? = null  //to be injected
     var resVar  : String ="fail"      // see solve
     val pengine     = Prolog()      //USED FOR LOCAL KB
     val NoMsg       = MsgUtil.buildEvent(name, "local_noMsg", "noMsg")
 
-    val mqtt        = MqttUtils()
+    val mqtt        = MqttUtils(name)
     protected val subscribers = mutableListOf<ActorBasic>()
     var mqttConnected = false
     protected var count = 1;
@@ -44,7 +45,7 @@ abstract class  ActorBasic(  name:         String,
     protected lateinit var currentSolution : SolveInfo
     protected lateinit var currentProcess  : Process
 
-    private var timeAtStart: Long = 0
+//    private var timeAtStart: Long = 0
 
     internal val requestMap : MutableMap<String, ApplMessage > = mutableMapOf<String,ApplMessage>()  //Oct2019
 
@@ -73,11 +74,20 @@ abstract class  ActorBasic(  name:         String,
     //To be defined by the application designer
     abstract suspend fun actorBody(msg : ApplMessage)
 
+	
+	
+	fun setDiscard( v: Boolean){
+		discardMessages = v
+	}
     //fun setContext( ctx: QakContext ) //built-in
 //    fun terminate(){
 //        context!!.actorMap.remove(  name )
 //        actor.close()
 //    }
+	
+/*
+TERMINATION 
+*/		
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 @kotlinx.coroutines.ExperimentalCoroutinesApi
     fun terminate(arg: Int=0){
@@ -89,7 +99,11 @@ abstract class  ActorBasic(  name:         String,
 		println("$tt ActorBasic $name | terminateCtx $arg TODO ")
         //context!!.terminateTheContext()         
     }
-
+@kotlinx.coroutines.ExperimentalCoroutinesApi
+@kotlinx.coroutines.ObsoleteCoroutinesApi
+	suspend fun waitTermination(){
+		(actor as Job).join()
+	}	
 /*
 --------------------------------------------
 Messaging
@@ -126,15 +140,13 @@ Messaging
             return
         }
         val destactor = context!!.hasActor(destName)
-        if( destactor is ActorBasic ) {
-//DESTINATION LOCAL
+        if( destactor is ActorBasic ) { //DESTINATION LOCAL
             //println("$tt ActorBasic sendMessageToActor | ${msg.msgId()}  dest=$destName LOCAL IN ${context!!.name}")
             destactor.actor.send( msg )
             return
         }
         val ctx = sysUtil.getActorContext(destName)
-        if( ctx == null ) {
-//DESTINATION REMOTE but no context known
+        if( ctx == null ) { //DESTINATION REMOTE but no context known
             sysUtil.traceprintln("$tt ActorBasic sendMessageToActor | ${msg.msgId()} dest=$destName REMOTE no context known " )
             if( conn != null ){ //we are sending an answer via TCP to an 'alien'
                 sysUtil.traceprintln("$tt ActorBasic sendMessageToActor | dest=$destName sending answer  ${msg.msgId()} using $conn ")
@@ -148,23 +160,27 @@ Messaging
                 }
             }
         }//ctx of destination is unknwkn
- //DESTINATION remote, context of dest known and MQTT selected
-        val uri = "coap://${ctx.hostAddr}:${ctx.portNum}/${ctx.name}/$destName"
-        println("$tt ActorBasic sendMessageToActor qak | ${uri} msg=$msg" )
-
+ //HERE: DESTINATION remote, context of dest known 
         if( attemptToSendViaMqtt(ctx, msg,destName) ) return
+		
+		if( ! msg.isRequest() && ! msg.isReply() ){
+        val uri = "coap://${ctx.hostAddr}:${ctx.portNum}/${ctx.name}/$destName"
+        //println("$tt ActorBasic sendMessageToActor qak | ${uri} msg=$msg" )
+
+        //if( attemptToSendViaMqtt(ctx, msg,destName) ) return  //APR2020
 
         sendCoapMsg( uri, msg.toString() )
-
+		}
  //DESTINATION remote, context of destName known and NO MQTT  => using proxy
-        // REMOVED: Coap 2020
-        /*
-        val proxy = context!!.proxyMap.get(ctx.name)
-        sysUtil.traceprintln("$tt ActorBasic sendMessageToActor |  ${msg.msgId()} $destName REMOTE with PROXY  " )
-        //WARNING: destName must be the original and not the proxy
-        if( proxy is ActorBasic ) { proxy.actor.send( msg ) }
-        else sysUtil.traceprintln("$tt ActorBasic  sendMessageToActor |  ${msg.msgId()} proxy of $ctx is null ")
-        */
+        // REMOVED: Coap 2020 but not for request
+        else{	//request
+	        val proxy = context!!.proxyMap.get(ctx.name)
+	        sysUtil.traceprintln("$tt ActorBasic sendMessageToActor |  ${msg.msgId()} $destName REMOTE with PROXY  " )
+	        //WARNING: destName must be the original and not the proxy
+	        if( proxy is ActorBasic ) { proxy.actor.send( msg ) }
+	        else println("$tt WARNING. ActorBasic  sendMessageToActor |  ${msg.msgId()} proxy of $ctx is null ")
+		}
+         
     }
 
     fun attemptToSendViaMqtt( ctx : QakContext, msg : ApplMessage, destName : String) : Boolean{
@@ -175,7 +191,8 @@ Messaging
                 mqttConnected = true
             }
             sysUtil.traceprintln("$tt ActorBasic sendViaMqtt | destName=$destName : $msg")
-            mqtt.sendMsg(msg, "unibo/qak/$destName")
+            //mqtt.sendMsg(msg, "unibo/qak/$destName")
+			mqtt.publish( "unibo/qak/$destName", msg.toString() )
             return true
         }
         return false
@@ -243,7 +260,8 @@ Messaging
 @kotlinx.coroutines.ObsoleteCoroutinesApi
 @kotlinx.coroutines.ExperimentalCoroutinesApi
     suspend fun emit( event : ApplMessage, avatar : Boolean = false ) {
-          if( context == null ){
+	//avatar=true means that the emitter is able to sense the event that emits
+        if( context == null ){
              println("$tt ActorBasic $name | WARNING emit: actor has no QakContext. ")
              this.actor.send(event)  //AUTOMSG
              return
@@ -266,7 +284,8 @@ Messaging
         //EMIT VIA MQTT IF there is
         if( context!!.mqttAddr.length != 0 ) {
             println(" $tt ActorBasic $name | emit MQTT ${event.msgId()}  ")
-            mqtt.sendMsg(event, "unibo/qak/events")
+            //mqtt.sendMsg(event, "unibo/qak/events")
+			mqtt.publish("unibo/qak/events", event.toString() )
         }
         //sysUtil.traceprintln(" $tt ActorBasic $name | ctxsMap SIZE = ${sysUtil.ctxsMap.size}")
          sysUtil.ctxsMap.forEach{
@@ -320,6 +339,7 @@ Messaging
         val event = MsgUtil.buildEvent(name,msgId, msg)
         emit( event )
     }
+
 
 /*
  --------------------------------------------
@@ -419,16 +439,13 @@ machineExec
             throw e
         }
     }
-
-    fun startTimer() {
-        timeAtStart = System.currentTimeMillis()
+    fun getCurrentTime():Long {
+        return System.currentTimeMillis()
     }
 
-    fun getDuration() : Int{
-        val duration = (System.currentTimeMillis() - timeAtStart).toInt()
-        //println("DURATION = $duration")
-         //solve("retract( wduration(_) )")		//remove old data
-         //solve("assert( wduration($duration) )")
+    fun getDuration(start: Long) : Long{
+        val duration = (System.currentTimeMillis() - start) 
+        //println("DURATION = $duration start=$start")
         return duration
     }
 
@@ -471,17 +488,26 @@ KNOWLEDGE BASE
      About CoAP: Jan 2020
 =======================================================================
 */
-    private var logo  : String 	            //Coap Jan2020
-    private var applRep : String 			//Coap Jan2020
+    private   var logo             : String 	        //Coap Jan2020
+    protected var ActorResourceRep : String 			//Coap Jan2020
 
     init{                                   //Coap Jan2020
         isObservable = true
         logo    = "       ActorBasic(Resource) $name "
-        applRep = "$logo | created  "
+        ActorResourceRep = "$logo | created  "
     }
+
+    fun updateResourceRep( v : String){
+        ActorResourceRep = v
+        changed()             //DO NOT FORGET!!!
+    }
+    fun geResourceRep() : String{
+		return ActorResourceRep
+	}
+
     override fun handleGET(exchange: CoapExchange) {
-        println("$logo | handleGET from: ${exchange.sourceAddress} arg: ${exchange.requestText}")
-        exchange.respond( "$applRep")
+//        println("$logo | handleGET from: ${exchange.sourceAddress} arg: ${exchange.requestText}")
+        exchange.respond( "$ActorResourceRep")
     }
     /*
      * POST is NOT idempotent.	Use POST when you want to add a child resource
@@ -500,10 +526,10 @@ KNOWLEDGE BASE
         sysUtil.traceprintln("$logo | handlePUT arg=$arg")
         try{
             val msg    = ApplMessage( arg )
-            updateCoapResource("$msg redirected")
+            updateResourceRep("$msg redirected")
             fromPutToMsg( msg, exchange )  //could change answer (if msg is a request)
         }catch( e : Exception){
-            updateCoapResource("error on msg $arg")
+            updateResourceRep("error on msg $arg")
             println("$logo | handlePUT ERROR on msg ")
         }
         //exchange.respond( CHANGED )
@@ -529,10 +555,6 @@ KNOWLEDGE BASE
         }
      }
 
-    fun updateCoapResource( v : String){
-        applRep = v
-        changed()             //DO NOT FORGET!!!
-    }
 
     fun sendCoapMsg(  url : String, msg : String   ){
         sysUtil.traceprintln("$logo |   sendCoapMsg url=${url}")
