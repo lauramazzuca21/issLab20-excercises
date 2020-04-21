@@ -1,0 +1,63 @@
+System robot
+
+mqttBroker "broker.hivemq.com" : 1883
+
+Dispatch cmd       : cmd(MOVE)
+Dispatch end       : end(ARG)
+
+Event  collision : collision(TARGET)
+Event  endall	 : endall( ARG )
+
+Context ctxrobot ip [host="localhost" port=8020]
+ 
+QActor basicrobot context ctxrobot{
+
+	State s0 initial { 	
+		println("basicrobot | START")		
+ 		run utils.virtualRobotSupportQak.initClientConn( myself )
+	}
+	Goto waitinfo
+	
+	State waitinfo{
+	}
+	Transition t1   whenEvent collision -> handleObstacle
+					whenMsg   cmd       -> execcmd
+				  	whenMsg   end       -> endwork			  
+	
+	State execcmd{
+		printCurrentMessage
+		onMsg( cmd : cmd(MOVE) ){
+			run utils.virtualRobotSupportQak.doApplMove( payloadArg(0) )	
+			//just activate motors: there is time to 'register for' collision
+		}
+	 }
+	 Goto waitinfo  
+
+	State handleObstacle{
+		//printCurrentMessage
+		println("basicrobot | handleObstacle")		
+	}
+	Goto waitinfo 
+	
+	State endwork{ 
+		println("basicrobot | endwork")
+		run utils.virtualRobotSupportQak.terminatevr( )
+		emit endall : endall(normal)
+		["terminate()"]
+	}
+	 
+}
+
+/*
+ 	//"tcp://mqtt.eclipse.org:1883"
+	//mqtt.eclipse.org
+	//tcp://test.mosquitto.org
+	//mqtt.fluux.io
+	//"tcp://broker.hivemq.com" 
+
+QActor user context ctxsuser{
+	State s0 initial { 	
+		run consolegui.consoleGui.create("basicrobot","tcp://broker.hivemq.com")		//first char of class must be low
+ 	}
+} 
+ */ 

@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+<!--
+
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin: 10;
+    margin-right: 15px;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #242424;
+}
+
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+}
+
+h2 {
+    background-color: #d9fbff;
+    font-size: 110%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 80%;
+}
+h4 {
+    background-color: #99ffcc;
+    font-size: 100%;
+}
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 80%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #ccffff;
+    color: #0033cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 80%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+k{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #990000;
+	 
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	 
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	 
+}
+pre{
+	font-family: "Helvetica";
+	font-size: 70%;
+	background-color: #fcf8c7; 
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	width: 800px;
+    font-size: 18px;
+}    
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}    
+div.remark{
+	background-color: #FFFC33;     
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}  
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+  -->
+</style>
+    
+<head>
+   
+<title>LabQakExamples2020</title></head>
+    
+<body>
+
+<div class="body"> 
+
+<h1>LabQakExamples2020 | Using the QActor (meta)model</h1> 
+
+<h2><a id=""/>Starting</h2>
+
+
+<ol>
+<li>Download <a href="https://www.eclipse.org/Xtext/download.html" target="web">Eclipse Xtext</a>  and Install Eclipse plugin for Kotlin.</li>
+<li>Set (via <tt>Windws->Preferences</tt>) the Java compiler to version <tt>1.8</tt> and the installed jre to <tt>jre1.8.0_ ... </tt> </li>
+<li>Copy in <tt>dropins</tt> the files that constitute the support to the <bc>qak</bc> meta-model:<br/>
+<bc>it.unibo.Qactork_1.2.0.jar</bc>, <bc>it.unibo.Qactork.ui_1.2.0.jar</bc>, <bc>it.unibo.Qactork.ide_1.2.0.jar</bc>.
+<li>In an empty workspace, create a new project of type <tt>Kotlin project</tt> (e.g. <tt>it.unibo.eclipse.bls</tt>).</li>
+<!-- <li>Set the gradle to your <em>Gradle User Home</em> (<tt>Windows->Preferences->Gradle</tt>) </li> -->
+<li>In <tt>src</tt>, create a file with extension <tt>qak</tt></li>
+</li>
+</ol>
+<p>
+At this point, Eclipse should present a window like the following one:
+</p>
+<center><img src="./img/blsStarting.png" alt="blsStarting" width="50%" height="50%"></center>
+<p>
+
+<h3>Examples</h3>
+<center><table style="width:95%">
+<tbody>	
+
+<tr>
+<td style="width:50%"><a href="../src/demo0.qak" target="code">demo0.qak</a>
+</td> 
+<td><m>
+This is the example introduced in 
+<a href="../../it.unibo.qakactor/userdocs/LabQakIntro2020.html#demo" target="web"" target="code">LabQakExamples2020.html</a>.
+</m></td>
+</tr>
+
+<tr>
+<td>
+<a href="../src/sentinel.qak" target="code">sentinel.qak</a>
+</td>
+<td><m>This is the example introduced in 
+<a href="../../it.unibo.qakactor/userdocs/LabQakIntro2020.html#sentinel" target="web"" target="code">LabQakExamples2020.html</a>.
+<br/><br/>
+'Alien' emitters written in Ptyhon3 are 
+<a href="../python/tcp_emitter.py" target="code">tcp_emitter.py</a> (that makes use of the TCP on the context port)
+and  <a href="../python/mqtt_emitter.py" target="code">mqtt_emitter.py</a> (that makes use of the MQTT broker
+specified by the sentinel).
+</m></td>
+</tr>
+
+
+
+<tr>
+<td>
+<a href="../src/demo_req_a.qak" target="code">demo_req_a.qak</a>
+<center><img src="./img/reqreply.png" alt="reqreply" width="90%" ></center>
+</td>
+<td><m>An example of using request/reply
+</m></td>
+</tr>
+
+
+<tr>
+<td>
+<a href="../src/demo_req_b.qak" target="code">demo_req_b.qak</a>
+<center><img src="./img/reqaskreply.png" alt="reqaskreply" width="90%" ></center>
+ 
+</td>
+<td><m>An example of using request/reply with askFor.
+</m></td>
+</tr>
+ 
+ 
+
+<center><table style="width:95%">
+<tbody>	
+ 
+<tr>
+<td style="width:40%">
+</td>
+<td><m></m></td>
+</tr>
+
+<tr>
+<td style="width:40%">
+</td> 
+<td><m></m></td>
+</tr>
+
+<tr>
+<td style="width:40%">
+
+</td>
+<td><m> 
+</m></td>
+</tr>
+
+
+</tbody>	
+</table></center>
+
+</div>
+<div style="background-color:rgba(86, 56, 253, 0.9); width:100%;text-align:center;font-size:small;color:white">
+By AN Unibo-DISI    
+</div> 
+</body>
+</html>

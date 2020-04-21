@@ -1,4 +1,9 @@
 package utils
+	//"tcp://mqtt.eclipse.org:1883"
+	//mqtt.eclipse.org
+	//tcp://test.mosquitto.org
+	//mqtt.fluux.io
+	//"tcp://broker.hivemq.com" 
 
 import kotlinx.coroutines.*
 import org.eclipse.paho.client.mqttv3.*
@@ -20,6 +25,7 @@ class MqttUtils(val owner: String )  {
 		if( mqtttraceOn ) println("$msg")
 	}
 	
+	//See https://stackoverflow.com/questions/58004759/exception-in-thread-main-java-lang-illegalargumentexception-no-networkmodule
 	fun connect(clientid: String, brokerAddr: String ): Boolean {
 		try {
   			trace("MqttUtils $owner | doing connect for $clientid to $brokerAddr "  );
@@ -32,7 +38,7 @@ class MqttUtils(val owner: String )  {
 			println("MqttUtils $owner | connect DONE $clientid to $brokerAddr " )//+ " " + client
 			isConnected = true
 		} catch (e: Exception) {
-			println("for $clientid connect $e for: $brokerAddr" ) //
+			println("MqttUtils $owner | for $clientid connect $e for: $brokerAddr" ) //
 			isConnected = false
 		}
  			return isConnected

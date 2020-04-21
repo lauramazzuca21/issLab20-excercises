@@ -72,7 +72,6 @@ class Transition(val edgeName: String, val targetState: String) {
 
     lateinit var edgeEventHandler: ( AppMsg ) -> Boolean  //MsgId previous: String
     private val actionList = mutableListOf<(Transition) -> Unit>()
-
     fun action(action: (Transition) -> Unit) { //MEALY?
         //println("Transition  | add ACTION:  $action")
         actionList.add(action)
@@ -101,7 +100,7 @@ class Transition(val edgeName: String, val targetState: String) {
 	//tcp://test.mosquitto.org
 	//mqtt.fluux.io
 	//"tcp://broker.hivemq.com" 
-val mqttbrokerAddr   =  "tcp://test.mosquitto.org"
+val mqttbrokerAddr   =  "tcp://broker.hivemq.com"
 
 abstract class  Fsm(  val name:  String,
                       val scope: CoroutineScope = GlobalScope,
@@ -123,6 +122,9 @@ abstract class  Fsm(  val name:  String,
 	val mqtt                       = MqttUtils(name)
 	internal val requestMap : MutableMap<String, AppMsg> = mutableMapOf<String,AppMsg>()
 	
+	companion object{
+		var connectNameCounter = 0
+	}
 /* 
 */
     init {
@@ -172,7 +174,7 @@ abstract class  Fsm(  val name:  String,
                 msgQueueStore.add(msg)
                 println("		*** Fsm $name |  state=${currentState.stateName} added $msg in msgQueueStore")
             }
-            else println("		*** Fsm $name | DISCARDING : ${msg.MSGID} in state=${currentState.stateName}")
+            else trace("		*** Fsm $name | DISCARDING : ${msg.MSGID} in state=${currentState.stateName}")
             return false
         }
 	}
@@ -312,6 +314,15 @@ abstract class  Fsm(  val name:  String,
              }
     }
 	
+    fun whenDispatchGuarded(msgName: String, guard:()->Boolean ): Transition.() -> Unit {
+        return {
+            edgeEventHandler = {
+                //println("whenDispatchGuarded $it - $evName");
+                it.isDispatch() && it.MSGID == msgName && guard()  }
+          }
+    }
+	
+	
 	
 /*
 INTERACTION	
@@ -339,11 +350,16 @@ INTERACTION
 	@kotlinx.coroutines.ObsoleteCoroutinesApi
 	@kotlinx.coroutines.ExperimentalCoroutinesApi
 	suspend fun emit(  msg : AppMsg ){
-	 	println("		*** Fsm $name | emit  msg: ${msg} usemqtt=$usemqtt")
+	 	trace("		*** Fsm $name | emit  msg: ${msg} usemqtt=$usemqtt")
 	    if( usemqtt ) {
+<<<<<<< HEAD
 			mqtt.publish( "unibo/qak/events", msg.toString() + " Mazzuca" )
+=======
+			val m = AppMsg.buildEvent(actor=name, msgId=msg.MSGID, content=msg.CONTENT+"_natali")
+			mqtt.publish( "unibo/qak/events", m.toString() )
+>>>>>>> 6384804c71b0cb367c1a730abe8602ea13ea1228
 		}else{
-		 	println("		*** Fsm $name | WARNING: Messages.emit NOT SUPPORTED without MQTT")
+		 	trace("		*** Fsm $name | WARNING: Messages.emit NOT SUPPORTED without MQTT")
 		}
 	}
 			
@@ -358,7 +374,7 @@ INTERACTION
 				while( ! mqtt.connectDone() ){
 					delay(1000)
 					println("		*** Fsm $name | attempt to connect ${mqttbrokerAddr}")
-					mqtt.connect(name, mqttbrokerAddr)
+					mqtt.connect(name+"nat_${connectNameCounter++}", mqttbrokerAddr)
 				}
 	 		    mqtt.subscribe(this, "unibo/qak/$name-Mazzuca")
 			    mqtt.subscribe(this, "unibo/qak/events")

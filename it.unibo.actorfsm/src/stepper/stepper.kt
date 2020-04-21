@@ -30,8 +30,8 @@ lateinit var robot : Fsm
 		return{
 			state("init") {	
 				action {
-					timer = timer("timer",    scope, usemqtt=false, owner=myself )
-					robot = basicrobot("basicrobot", scope, usemqtt=true, owner=myself  )
+					timer = timer("timer",    scope, usemqtt=false,        owner=myself  )
+					robot = basicrobot("basicrobot", scope, usemqtt=false, owner=myself  )
 					println("$ndnt stepper STARTED")
 				}
 				transition( edgeName="t0",targetState="waitcmd", cond=doswitch() )
@@ -41,7 +41,7 @@ lateinit var robot : Fsm
 					//println("$ndnt stepper waits ... ")
 				}
 				transition( edgeName="t0",targetState="dostep",  cond=whenDispatch("step") )
-				transition( edgeName="t0",targetState="docmd",  cond=whenDispatch("cmd") )
+				transition( edgeName="t0",targetState="docmd",   cond=whenDispatch("cmd") )
 				transition( edgeName="t0",targetState="endwork", cond=whenDispatch("end") ) 
 			}
 			
@@ -56,16 +56,20 @@ lateinit var robot : Fsm
 				action {
 					//println("$ndnt stepper dostep msg=${currentMsg} owner=${owner.name}")
 					forward(  "cmd", "w", robot )
+ 					forward( "gauge", "${currentMsg.CONTENT}", timer  )					
 					memoTime()
-  					forward( "gauge", "${currentMsg.CONTENT}", timer  )					
-				}
+ 				}
 				transition( edgeName="t2",targetState="stepKo",  cond=whenDispatch("sensor")  )   	//(first)
 				transition( edgeName="t1",targetState="stepOk",  cond=whenDispatch("endgauge") )
  				transition( edgeName="t3",targetState="endwork", cond=whenDispatch("end")     )
 				transition( edgeName="t4",targetState="docmd",   cond=whenDispatch("cmd") )
 			}
-			
+/*
+ WARNING: The step time could terminate just before that a detected collision is delivered
+ */
 			state("stepOk") {
+				//only if the virtualRobotSupportApp agree !!!
+				//the stepper should make reference to the virtualRobotSupportApp  state ?!
 				action {
 					forward(  "cmd", "h", robot )
  					stepCounter++
@@ -75,18 +79,27 @@ lateinit var robot : Fsm
 					} 			
  				}
 				transition( edgeName="t0",targetState="waitcmd", cond=doswitch() )				
- 			}			
+ 			}
+				
 			state("stepKo") {
 				action {
-					val duration=getDuration() 	 
+					val duration=getDuration()-100 //to compensate elab (tricky) 	 
 					if( owner is Fsm ){
 						println("$ndnt stepper stepKo at stepCounter=$stepCounter after $duration => stepfail to ${owner.name}")
 						forward("stepfail", "$duration", owner)
+						delay(100)
 					}		
     			}
- 				//WARNING: if discardMessages = false the msg timer IS NOT LOST: it should be consumed
+ 				//WARNING: endgauge  should be consumed
+				transition( edgeName="t0",targetState="discardGauge", cond=whenDispatch("endgauge") )
+			}
+			//endgauge could arrive while back in waitcmd 
+			state("discardGauge"){
+				action{
+					println("$ndnt stepper discard $currentMsg")
+				}
 				transition( edgeName="t0",targetState="waitcmd", cond=doswitch() )
-			}	
+			}
 			
  									
 			state("endwork") {
