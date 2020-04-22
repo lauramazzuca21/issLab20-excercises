@@ -46,8 +46,16 @@ class Sentinel ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, s
 						                        currentMsg.msgContent()) ) { //set msgArgList
 								println("sentinel | ALARM ${payloadArg(0)} ")
 						}
+						stateTimer = TimerActor("timer_handleAlarm", 
+							scope, context!!, "local_tout_sentinel_handleAlarm", 1000.toLong() )
 					}
-					 transition( edgeName="goto",targetState="s0", cond=doswitch() )
+					 transition(edgeName="t01",targetState="explore",cond=whenTimeout("local_tout_sentinel_handleAlarm"))   
+				}	 
+				state("explore") { //this:State
+					action { //it:State
+						println("sentinel | exploring ...")
+					}
+					 transition( edgeName="goto",targetState="watch", cond=doswitch() )
 				}	 
 				state("end") { //this:State
 					action { //it:State
