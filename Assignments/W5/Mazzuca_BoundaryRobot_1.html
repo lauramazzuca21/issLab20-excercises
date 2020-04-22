@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+<!--
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin: 10;
+    margin-right: 15px;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #242424;
+}
+
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+}
+
+h2 {
+    background-color: #d9fbff;
+    font-size: 110%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 80%;
+}
+h4 {
+    background-color: #99ffcc;
+    font-size: 100%;
+	width: 750px;
+}
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 80%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #ccffff;
+    color: #0033cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 80%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+k{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #990000;
+	 
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	 
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	 
+}
+pre{
+	font-family: "Helvetica";
+	font-size: 60%;
+	background-color: #fcf8c7;
+	border: 1px solid blue;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	width: 800px;
+    font-size: 14px;
+}    
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}       
+div.remark{
+	background-color: #FFFC33;     
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}  
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}         
+    
+  -->
+</style>
+    
+<head>
+   
+<title>Lab ...</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ Remember our motto:<br>   <k>there is no code without a project, no project
+without problem analysis and no problem without requirements</k>.
+ 
+ 
+<h2>Requirements</h2>
+ 
+<div>
+We want define an actor that manages a virtual robot working in a empty, rectangular room. The virtual robot is initially located in the left-upper corner of the room (home location). We want to give to the actor a goal: walk along the boundary of the room.<br>
+<ol>
+    <li> actor initially waits for a command start;</li>
+    <li> after receiving <ks>start</ks>, the actor begins its goal-work, by moving along the room boundary <ks>measuring its perimeter</ks>, until it reaches the home again;</li>
+    <li> while doing its goal-work, the actor must be able to react to the commands <ks>stop</ks>, by 'immediately' stopping the work;</li>
+    <li> while stopped, the actor waits for a commands <ks>resume</ks> to continue its goal-work from the point reached before stopping.</li>
+</ol>
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+<div>
+<ks>room</ks>: a defined and confined space in which the virtual robot can move. <br>
+<ks>home</ks>: the starting and finishing point for the robot movement.<br>
+<ks>comands</ks>: set of specific and predefined strings that the actor recognises to perform tasks.<br>
+<ks>perimeter</ks>: measurement of the boundary in terms of RobotUnits.<br>
+<ks>RobotUnits</ks>: 1 RobotUnit is equivalent to a chunk of space that has width and length equal to the Robot's width and length.<br>
+
+<k>Functional TestPlan</k><br>
+the Software System will need to ensure the correct performing of all the commands and mesure exactly the perimeter of the room. <br>
+</div>
+
+<h2>Problem analysis</h2>
+<div>
+<k>Logical Architecture</k>: <br>
+<img src="./img/logical-architecture.png" alt="logical-architecture" width="50%" height="50%"><br>
+<k>Abstraction Gap</k>: if we use a programming language that already implements the concept of Actor we have no abraction gap at all, otherwise we will need to implement it ourselves.<br>
+<k>Functional TestPlan</k>: <br>
+• check that when each command is sendispatched by the User (start, stop, resume) the robotBoundary is actually performing them by changing state. <br>
+• check that the robot returns the right perimeter of the room, which we know beforehand. <br>
+<k>Product Backlog</k>: <br>
+</div>
+
+<h2>Test plans</h2> 
+<div>
+<xmp>
+
+</xmp>
+</div>
+
+<h2>Project</h2> 
+<div>
+<h3>1. STRUCTURE</h3>
+We will need two actors, as shown in the Logical Architecture, representing the User and the RobotBoundary. <br>
+The Room will be divided into a matrix of <ks>RobotUnitCells</ks> measuring in length and width as the robot. <br>
+<ks>RobotUnitCell</ks> will be an Object that contains its position in the room and has a method to check if it's a boundary cell or not. <br>
+The RobotBoundary actor will need an Object to keep track of the cells it covers in terms of RobotUnitsCells, so that at the end we 
+can check which cells it passed on and be sure they were the boundary of the room. The Object will be called <ks>RobotUnitCellList</ks> and will
+have a property made of a <ks>List of RobotUnitCells</ks> and methods to retrieve informations about these cells, like if they're all boundary cells.
+The RobotBoundary will keep stored this object calling it CoveredCells. (Useful to understand behaviour)<br>
+We will also use the virtualRobotSupport to keep an abstraction level between the RobotBoundary actor and the actual implementation of the virtual robot.<br>
+<img src="./img/robotBoundary-structure.jpg" alt="robotBoundary-structure" width="75%" height="75%"><br>
+<h3>2. INTERACTION</h3>
+The interaction between the two actors will need to happen with a <ks>bidirectional channel</ks> so that the user can receive the result of the RobotBoundary's measurement.
+The messages will al be of type "fire-and-forget",  i.e. on message of type dispatch according to our internal standard terminology introduced in: <a href="//htmlpreview.github.io/?https://github.com/anatali/iss2020LabBo/blob/master/it.unibo.boundaryRobot/userDocs/RobotActorBoundary.html#msgstandard" target="web"> 	
+FirstActor | Towards standards in messaging</a>.
+<h3>3. BEHAVIOUR</h3>
+<table style="width:100%">
+	<tbody>	
+		<tr>
+			<tr>
+				<th>robotBoundary</th>
+				<th>user</th>
+			</tr>
+			<td title="robotBoundary" style="width:50%"> 
+				<center><img src="./img/robotBoundary-behaviour-evolved.jpg" alt="robotBoundary-behaviour" width="100%" height="100%"></center>
+			</td>
+			<td title="user"> 
+				<center><img src="./img/user-behaviour-evolved.jpg" alt="user-behaviour" width="100%" height="100%"></center>
+			</td>
+		</tr>
+	</tbody>	
+</table>
+
+</div>
+
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+	      	
+<br><br> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By Laura Mazzuca email: laura.mazzuca@studio.unibo.it  
+<img src="./img/prof-pic.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>

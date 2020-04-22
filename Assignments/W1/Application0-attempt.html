@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+<!--
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin: 10;
+    margin-right: 15px;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #242424;
+}
+
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+}
+
+h2 {
+    background-color: #d9fbff;
+    font-size: 110%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 80%;
+}
+h4 {
+    background-color: #99ffcc;
+    font-size: 100%;
+	width: 750px;
+}
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 80%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #ccffff;
+    color: #0033cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 80%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+k{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #990000;
+	 
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	 
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	 
+}
+pre{
+	font-family: "Helvetica";
+	font-size: 60%;
+	background-color: #fcf8c7;
+	border: 1px solid blue;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	width: 800px;
+    font-size: 18px;
+}    
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}       
+div.remark{
+	background-color: #FFFC33;     
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}  
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}         
+    
+  -->
+</style>
+    
+<head>
+   
+<title>Lab ...</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ Remember our motto:<br/>   <k>there is no code without a project, no project
+without problem analysis and no problem without requirements</k>.
+ 
+ 
+<h2>Requirements</h2>
+ 
+<div class="remark">
+Design and build a software system to control a DDR (differential drive robot) so that:<br/>
+• The robot is able to explore in a sistematic and autonomus way a room<br/>
+• By showing (in real time) a picture of the explored space<br/>
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+<div class="remark">
+<ks>DDR</ks>: Differential Drive Robot; two-wheeled drive system with independent actuators for each wheel. <br/>
+<ks>room</ks>: a defined and confined space in which the DDR can move. <br>
+<ks>sistematic</ks>: the DDR will move in the room following a specific pattern of exploration to cover it all... <br/>
+<ks>autonomus</ks>:  ... and it will do so without requiring input from a user.<br>
+<ks>showing real time a picture</ks>: the DDR will need to send on a given device (computer, smartphone) images of its exploration. <br/>
+<k>Functional TestPlan</k><br/>
+• the Software System will need to ensure the full coverage of the room and avoidance of obstacles. <br/>
+• the Software System will need to ensure the communication between the DDR and the device that will need to receive the <picture></picture>. <br/>
+</div>
+
+<h2>Problem analysis</h2>
+<div class="remark">
+<k>Logical Architecture</k>: To satisfy the requirement of exploration the Software System will need a module to drive the DDR, which means making decisions on the 
+direction where to go depending on the detections of the sensors. Then, there will also be a need for a module to manage the connection with the device that will receinve the pictures, which will need to establish 
+the connection and send the pictures taken by the camera.<br/>
+<k>Abstraction Gap</k>: the gap will have to be consistent so that it's easier to build a system easily extensible and maintenable.<br/>
+<k>Functional TestPlan</k>: <br/>
+<k>Product Backlog</k>: <br/>
+</div>
+
+<h2>Test plans</h2> 
+<div class="remark">
+<ks>GOAL</ks>: give a formal description (for example, by using <ks>JUnit</ks>) of the <k>functional TestPlans</k>, with reference to the <k>logical architecture</k> of the system .
+</div>
+
+<h2>Project</h2> 
+<div class="remark">
+<ks>GOAL</ks>: define the concrete architecture of the system and the behavior of each component  .
+</div>
+
+<h2>Testing</h2> 
+<div class="remark">
+<ks>GOAL</ks>: complete the <k>functional TestPlans</k> according to the project code and execute them.
+</div>
+
+<h2>Deployment</h2> 
+
+<div class="remark">
+<ks>GOAL</ks>: prepare a software application to run and operate in a specific environment. 
+It involves installation, configuration, testing and making changes to optimize the performance of the software. 
+It can either be carried out manually or (hopefully) through automated systems.
+</div>
+
+
+
+<h2>Maintenance</h2> 
+<div class="remark">
+<ks>GOAL</ks>: modify the software product after delivery to correct faults, 
+to improve performance or other attributes. 
+A common perception of maintenance is that it merely involves fixing defects. 
+However, one study indicated that over 80% of maintenance effort is used for non-corrective actions.
+</div>
+
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+	      	
+<br/><br/> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By Laura Mazzuca email: laura.mazzuca@studio.unibo.it  
+<img src="./img/prof-pic.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>

@@ -1,0 +1,25 @@
+System sys0
+
+Dispatch msg1 :msg1(ARG)
+
+Request r1 : r1(v)
+
+Context ctxSys0 ip [host='local host' port=8055]
+
+QActor qa0 context ctxSys0 {
+	State s0 initial {
+		println("Hello World")
+		forward qa0 -m msg1 : msg1(hello)
+		forward qa0 -m msg1 : msg1(hello2)
+		
+	}
+	//Goto work
+	Transition t0 whenMsg msg1 -> work
+	
+	State work {
+		printCurrentMessage
+		println("Working")
+	}
+	Transition t0 whenMsg msg1 -> work
+	
+}

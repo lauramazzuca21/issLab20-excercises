@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;it.unibo.boundaryRobot&apos;" deleteContents="false" description="Delete resource &apos;it.unibo.boundaryRobot&apos;" element1="/it.unibo.boundaryRobot" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1585067525301"/>
+</session>

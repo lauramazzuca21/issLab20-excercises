@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;it.unibo.kotlinIntro&apos;&#x0A;- Original project: &apos;it.unibo.kotlinIntro&apos;&#x0A;- Original element: &apos;virtualRobotUsage.boundaryWalker.TestBoundaryWalker.java&apos;" description="Delete element" element1="/src=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;virtualRobotUsage.boundaryWalker{TestBoundaryWalker.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1585063650100" subPackages="false" version="1.0"/>
+</session>

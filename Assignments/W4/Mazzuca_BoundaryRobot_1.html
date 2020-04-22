@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+<!--
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin: 10;
+    margin-right: 15px;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #242424;
+}
+
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+}
+
+h2 {
+    background-color: #d9fbff;
+    font-size: 110%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 80%;
+}
+h4 {
+    background-color: #99ffcc;
+    font-size: 100%;
+	width: 750px;
+}
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 80%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #ccffff;
+    color: #0033cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 80%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+k{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #990000;
+	 
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	 
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	 
+}
+pre{
+	font-family: "Helvetica";
+	font-size: 60%;
+	background-color: #fcf8c7;
+	border: 1px solid blue;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	width: 800px;
+    font-size: 14px;
+}    
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}       
+div.remark{
+	background-color: #FFFC33;     
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}  
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}         
+    
+  -->
+</style>
+    
+<head>
+   
+<title>Lab ...</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ Remember our motto:<br>   <k>there is no code without a project, no project
+without problem analysis and no problem without requirements</k>.
+ 
+ 
+<h2>Requirements</h2>
+ 
+<div class="remark">
+We want define an actor that manages a virtual robot working in a empty, rectangular room. The virtual robot is initially located in the left-upper corner of the room (home location). We want to give to the actor a goal: walk along the boundary of the room.<br>
+<ol>
+    <li> actor initially waits for a command start;</li>
+    <li> after receiving start, the actor begins its goal-work, by moving along the room boundary, until it reaches the home again;</li>
+    <li> while doing its goal-work, the actor must be able to react to the commands stop, by 'immediately' stopping the work;</li>
+    <li> while stopped, the actor waits for a commands resume to continue its goal-work from the point reached before stopping.</li>
+</ol>
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+<div class="remark">
+<ks>room</ks>: a defined and confined space in which the virtual robot can move. <br>
+<ks>home</ks>: the starting and finishing point for the robot movement.<br>
+<ks>comands</ks>: set of specific and predefined strings that the actor recognises to perform tasks.<br>
+<k>Functional TestPlan</k><br>
+• the Software System will need to ensure the correct performing of all the commands. <br>
+</div>
+
+<h2>Problem analysis</h2>
+<div class="remark">
+<k>Logical Architecture</k>: <br>
+<img src="./img/logical-architecture.png" alt="logical-architecture" width="50%" height="50%"><br>
+<k>Abstraction Gap</k>: <br>
+<k>Functional TestPlan</k>: <br>
+<k>Product Backlog</k>: <br>
+</div>
+
+<h2>Project</h2> 
+<div class="remark">
+RobotActor.kt <br>
+<pre><code>val RobotActor  : SendChannel<String>	= CoroutineScope( Dispatchers.Default ).actor {
+	var state    = "working"
+	val homeWall = "wallLeft"
+	fun doInit() = virtualRobotSupport.initClientConn() 
+	fun doEnd()  = { state = "end"  }
+		
+	suspend fun doCollision(msg : AppMsg){
+		virtualRobotSupport.doApplMove( "l" ) //turn left (moving counterclockwise)
+		if (!msg.CONTENT.contains(homeWall)) { //only when it's been hit a different wall from the homewall we keep going
+			delay(100)		
+			virtualRobotSupport.doApplMove( "w" )
+		}
+	}
+	suspend fun doSensor(msg : virtualRobotUsage.AppMsg){
+		println("robotActor handles: ${msg.CONTENT}")
+		if( msg.CONTENT.startsWith("collision") ) doCollision(msg)
+	}
+	
+	suspend fun doMove( move: String ){
+  		virtualRobotSupport.doApplMove( move )		//move in the application-language 
+	}
+	
+	while( state == "working" ){
+		var msg = channel.receive()
+		println("robotActor receives: $msg ")
+		val applMsg = AppMsg.create(msg)
+ 		//println("robotActor applMsg.MSGID=${applMsg.MSGID} ")
+		when( applMsg.MSGID ){
+			"init"      -> doInit()
+			"end"       -> doEnd()
+			"sensor"    -> doSensor(applMsg)
+ 			"move"      -> doMove(applMsg.CONTENT)
+			else        -> println("NO HANDLE for $msg")
+		}		
+ 	}//while
+ 	println("robotActor ENDS state=$state")
+}</code> </pre>
+
+BoundaryWalker.kt<br>
+<pre><code>
+val initMsg         = AppMsg.create("init","main","robotactor")
+val endMsg          = AppMsg.create("end", "main","robotactor")
+val startMsg  		= AppMsg.create("move","main","robotactor","w") 
+val resumeMsg 		= AppMsg.create("move","main","robotactor","w") 
+val stopMsg    		= AppMsg.create("move","main","robotactor","h") 
+
+suspend fun forward(  msg : AppMsg ){
+ 	RobotActor.send( msg.toString()  )
+}
+
+suspend fun sendCommands(   ) {
+	virtualRobotSupport.setRobotTarget( RobotActor  ) //Configure - Inject
+
+	//init RobotActor
+	forward( initMsg )
+	//show user start and end commands usage and wait for acceptable command
+	printUsage()
+	var input = readLine()!!
+    while (!input.isNullOrBlank()) {
+		when (input){
+			"start"     -> forward(startMsg)
+ 			"end"       -> { forward(endMsg); return }
+			"resume"    -> forward(resumeMsg)
+ 			"stop"      -> forward(stopMsg)
+			else        -> printUsage()
+
+		}
+		input = readLine()!!
+	}
+}
+
+fun printUsage() {
+    println("Please, write:")
+	println("'start' to begin execution;")
+    println("'end' to exit;")
+    println("'stop' if robot is moving and you want to stop it;")
+    println("'resume' if you want to resume robot movement after stop.")
+}
+
+fun main( ) = runBlocking {
+    println("==============================================")
+    println("PLEASE, ACTIVATE WENV ")
+    println("==============================================")
+	sendCommands(   )
+    println("BYE")
+}
+</code> </pre>
+</div>
+
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+	      	
+<br><br> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By Laura Mazzuca email: laura.mazzuca@studio.unibo.it  
+<img src="./img/prof-pic.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>
