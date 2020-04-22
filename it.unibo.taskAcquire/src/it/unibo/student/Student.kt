@@ -17,9 +17,9 @@ class Student ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, sc
 	@kotlinx.coroutines.ExperimentalCoroutinesApi			
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
 		
-			var StudentPrefix = "chiossi"
-			val Badge         =  "0000763488"
-			val Mail          =  "domenico.mezzapesa@i-tel.it"
+			var StudentPrefix = "Mazzuca"
+			val Badge         =  "0000722743"
+			val Mail          =  "laura.mazzuca@studio.unibo.it"
 			var counter       = 0
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
