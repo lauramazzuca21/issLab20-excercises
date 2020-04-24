@@ -10,6 +10,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>.link1</name>
+			<type>2</type>
+			<location>/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/issLab20-excercises/Eclipse Workspace/unibolibs</location>
+		</link>
+		<link>
 			<name>.link2</name>
 			<type>2</type>
 			<location>/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/Eclipse Workspace/it.unibo.qakexperiment/unresolved dependency -  uniboInterfaces</location>

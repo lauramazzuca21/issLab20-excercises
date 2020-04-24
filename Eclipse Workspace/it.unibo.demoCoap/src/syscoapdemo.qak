@@ -1,0 +1,12 @@
+System syscoapdemo
+
+Dispatch cmd      : cmd(X)
+
+Context ctxsyscoapdemo ip [ host= "localhost" port= 8022 ]
+
+QActor actorcoap context ctxsyscoapdemo{ 
+	State s0 initial{ 
+		println("Please activate a CoAP client observer (e.g.")
+		updateResource "actorcoap starts"
+ 	}
+} 
