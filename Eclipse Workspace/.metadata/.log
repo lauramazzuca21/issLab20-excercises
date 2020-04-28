@@ -3521,3 +3521,1226 @@ Caused by: java.lang.IllegalArgumentException: Duplicate root element it.unibo.g
 
 !ENTRY org.jetbrains.kotlin.core 2 0 2020-04-23 17:11:33.641
 !MESSAGE Could not check for update (Could not obtain update site)
+!SESSION 2020-04-26 10:28:21.235 -----------------------------------------------
+eclipse.buildId=4.15.0.I20200305-0155
+java.version=14.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.dsl.product -keyring /Users/lallu/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.dsl.product -keyring /Users/lallu/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-04-26 10:29:16.472
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.buildship.core 2 2 2020-04-26 10:29:43.523
+!MESSAGE Synchronize project it.unibo.demoxxx failed due to an error in the referenced Gradle build.
+!STACK 0
+org.gradle.tooling.BuildException: Could not run phased build action using Gradle distribution 'https://services.gradle.org/distributions/gradle-6.0-bin.zip'.
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:51)
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:29)
+	at org.gradle.tooling.internal.consumer.ResultHandlerAdapter.onFailure(ResultHandlerAdapter.java:43)
+	at org.gradle.tooling.internal.consumer.async.DefaultAsyncConsumerActionExecutor$1$1.run(DefaultAsyncConsumerActionExecutor.java:62)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+	at org.gradle.tooling.internal.consumer.BlockingResultHandler.getResult(BlockingResultHandler.java:46)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:63)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:31)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runPhasedModelQuery(EclipseModelUtils.java:110)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryCompositeModelWithRuntimInfo(EclipseModelUtils.java:85)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryModels(EclipseModelUtils.java:59)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$null$4(DefaultModelProvider.java:75)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$GradleConnectionOperation.runInToolingApi(DefaultGradleBuild.java:329)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.withConnection(DefaultGradleBuild.java:122)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$fetchEclipseProjectAndRunSyncTasks$5(DefaultModelProvider.java:75)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4878)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3529)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2278)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2155)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2045)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3953)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4873)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.getFromCache(DefaultModelProvider.java:98)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.executeOperation(DefaultModelProvider.java:90)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.fetchEclipseProjectAndRunSyncTasks(DefaultModelProvider.java:72)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:226)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:192)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:100)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.gradle.internal.exceptions.LocationAwareException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.transform(DefaultExceptionAnalyser.java:99)
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.collectFailures(DefaultExceptionAnalyser.java:65)
+	at org.gradle.initialization.exception.MultipleBuildFailuresExceptionAnalyser.transform(MultipleBuildFailuresExceptionAnalyser.java:48)
+	at org.gradle.initialization.exception.StackTraceSanitizingExceptionAnalyser.transform(StackTraceSanitizingExceptionAnalyser.java:30)
+	at org.gradle.initialization.DefaultGradleLauncher.finishBuild(DefaultGradleLauncher.java:166)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:133)
+	at org.gradle.initialization.DefaultGradleLauncher.executeTasks(DefaultGradleLauncher.java:110)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:60)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:57)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:85)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:78)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:189)
+	at org.gradle.internal.work.StopShieldingWorkerLeaseService.withLocks(StopShieldingWorkerLeaseService.java:40)
+	at org.gradle.internal.invocation.GradleBuildController.doBuild(GradleBuildController.java:78)
+	at org.gradle.internal.invocation.GradleBuildController.run(GradleBuildController.java:57)
+	at org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(ClientProvidedPhasedActionRunner.java:60)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:63)
+	at org.gradle.tooling.internal.provider.ValidatingBuildActionRunner.run(ValidatingBuildActionRunner.java:32)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:39)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:51)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:416)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:406)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:102)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.call(DelegatingBuildOperationExecutor.java:36)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner.run(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:50)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:47)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:78)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:47)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:31)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:42)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:28)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:78)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:52)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:59)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:36)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:68)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:38)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:37)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:26)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:43)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:29)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:60)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:32)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:55)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:41)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:48)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:32)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:68)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:27)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:78)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:75)
+	at org.gradle.util.Swapper.swap(Swapper.java:38)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:75)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:55)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:82)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:297)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+Caused by: org.gradle.api.reflect.ObjectInstantiationException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:64)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.getScript(DefaultScriptRunnerFactory.java:56)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.run(DefaultScriptRunnerFactory.java:86)
+	at org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(DefaultScriptPluginFactory.java:210)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1$1.run(BuildOperationScriptPlugin.java:69)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:66)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.internal.DefaultUserCodeApplicationContext.apply(DefaultUserCodeApplicationContext.java:49)
+	at org.gradle.configuration.BuildOperationScriptPlugin.apply(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.DefaultInitScriptProcessor.process(DefaultInitScriptProcessor.java:50)
+	at org.gradle.initialization.InitScriptHandler$1.run(InitScriptHandler.java:55)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.InitScriptHandler.executeScripts(InitScriptHandler.java:49)
+	at org.gradle.initialization.DefaultSettingsPreparer.prepareSettings(DefaultSettingsPreparer.java:33)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.doLoadBuild(BuildOperatingFiringSettingsPreparer.java:59)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.run(BuildOperatingFiringSettingsPreparer.java:54)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer.prepareSettings(BuildOperatingFiringSettingsPreparer.java:42)
+	at org.gradle.initialization.DefaultGradleLauncher.prepareSettings(DefaultGradleLauncher.java:194)
+	at org.gradle.initialization.DefaultGradleLauncher.doClassicBuildStages(DefaultGradleLauncher.java:138)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:130)
+	... 75 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.reflection.ReflectionCache
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.groovy.scripts.Script.<init>(Script.java:25)
+	at org.gradle.groovy.scripts.BasicScript.<init>(BasicScript.java:34)
+	at org.gradle.groovy.scripts.DefaultScript.<init>(DefaultScript.java:63)
+	at org.gradle.initialization.InitScript.<init>(InitScript.java:22)
+	at eclipsePlugin_alnkab2jwi1heim7pcn91wojr.<init>(/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/issLab20-excercises/Eclipse Workspace/.metadata/.plugins/org.eclipse.buildship.core/init.d/eclipsePlugin.gradle)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:62)
+	... 114 more
+
+!ENTRY org.eclipse.buildship.core 2 2 2020-04-26 10:29:43.525
+!MESSAGE Synchronize Gradle projects with workspace failed due to an error in the referenced Gradle build.
+!STACK 0
+org.gradle.tooling.BuildException: Could not run phased build action using Gradle distribution 'https://services.gradle.org/distributions/gradle-6.0-bin.zip'.
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:51)
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:29)
+	at org.gradle.tooling.internal.consumer.ResultHandlerAdapter.onFailure(ResultHandlerAdapter.java:43)
+	at org.gradle.tooling.internal.consumer.async.DefaultAsyncConsumerActionExecutor$1$1.run(DefaultAsyncConsumerActionExecutor.java:62)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+	at org.gradle.tooling.internal.consumer.BlockingResultHandler.getResult(BlockingResultHandler.java:46)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:63)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:31)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runPhasedModelQuery(EclipseModelUtils.java:110)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryCompositeModelWithRuntimInfo(EclipseModelUtils.java:85)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryModels(EclipseModelUtils.java:59)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$null$4(DefaultModelProvider.java:75)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$GradleConnectionOperation.runInToolingApi(DefaultGradleBuild.java:329)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.withConnection(DefaultGradleBuild.java:122)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$fetchEclipseProjectAndRunSyncTasks$5(DefaultModelProvider.java:75)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4878)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3529)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2278)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2155)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2045)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3953)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4873)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.getFromCache(DefaultModelProvider.java:98)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.executeOperation(DefaultModelProvider.java:90)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.fetchEclipseProjectAndRunSyncTasks(DefaultModelProvider.java:72)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:226)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:192)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:100)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.gradle.internal.exceptions.LocationAwareException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.transform(DefaultExceptionAnalyser.java:99)
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.collectFailures(DefaultExceptionAnalyser.java:65)
+	at org.gradle.initialization.exception.MultipleBuildFailuresExceptionAnalyser.transform(MultipleBuildFailuresExceptionAnalyser.java:48)
+	at org.gradle.initialization.exception.StackTraceSanitizingExceptionAnalyser.transform(StackTraceSanitizingExceptionAnalyser.java:30)
+	at org.gradle.initialization.DefaultGradleLauncher.finishBuild(DefaultGradleLauncher.java:166)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:133)
+	at org.gradle.initialization.DefaultGradleLauncher.executeTasks(DefaultGradleLauncher.java:110)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:60)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:57)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:85)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:78)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:189)
+	at org.gradle.internal.work.StopShieldingWorkerLeaseService.withLocks(StopShieldingWorkerLeaseService.java:40)
+	at org.gradle.internal.invocation.GradleBuildController.doBuild(GradleBuildController.java:78)
+	at org.gradle.internal.invocation.GradleBuildController.run(GradleBuildController.java:57)
+	at org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(ClientProvidedPhasedActionRunner.java:60)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:63)
+	at org.gradle.tooling.internal.provider.ValidatingBuildActionRunner.run(ValidatingBuildActionRunner.java:32)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:39)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:51)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:416)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:406)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:102)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.call(DelegatingBuildOperationExecutor.java:36)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner.run(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:50)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:47)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:78)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:47)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:31)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:42)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:28)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:78)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:52)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:59)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:36)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:68)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:38)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:37)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:26)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:43)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:29)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:60)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:32)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:55)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:41)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:48)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:32)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:68)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:27)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:78)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:75)
+	at org.gradle.util.Swapper.swap(Swapper.java:38)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:75)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:55)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:82)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:297)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+Caused by: org.gradle.api.reflect.ObjectInstantiationException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:64)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.getScript(DefaultScriptRunnerFactory.java:56)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.run(DefaultScriptRunnerFactory.java:86)
+	at org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(DefaultScriptPluginFactory.java:210)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1$1.run(BuildOperationScriptPlugin.java:69)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:66)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.internal.DefaultUserCodeApplicationContext.apply(DefaultUserCodeApplicationContext.java:49)
+	at org.gradle.configuration.BuildOperationScriptPlugin.apply(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.DefaultInitScriptProcessor.process(DefaultInitScriptProcessor.java:50)
+	at org.gradle.initialization.InitScriptHandler$1.run(InitScriptHandler.java:55)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.InitScriptHandler.executeScripts(InitScriptHandler.java:49)
+	at org.gradle.initialization.DefaultSettingsPreparer.prepareSettings(DefaultSettingsPreparer.java:33)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.doLoadBuild(BuildOperatingFiringSettingsPreparer.java:59)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.run(BuildOperatingFiringSettingsPreparer.java:54)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer.prepareSettings(BuildOperatingFiringSettingsPreparer.java:42)
+	at org.gradle.initialization.DefaultGradleLauncher.prepareSettings(DefaultGradleLauncher.java:194)
+	at org.gradle.initialization.DefaultGradleLauncher.doClassicBuildStages(DefaultGradleLauncher.java:138)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:130)
+	... 75 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.reflection.ReflectionCache
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.groovy.scripts.Script.<init>(Script.java:25)
+	at org.gradle.groovy.scripts.BasicScript.<init>(BasicScript.java:34)
+	at org.gradle.groovy.scripts.DefaultScript.<init>(DefaultScript.java:63)
+	at org.gradle.initialization.InitScript.<init>(InitScript.java:22)
+	at eclipsePlugin_alnkab2jwi1heim7pcn91wojr.<init>(/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/issLab20-excercises/Eclipse Workspace/.metadata/.plugins/org.eclipse.buildship.core/init.d/eclipsePlugin.gradle)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:62)
+	... 114 more
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 10:51:21.551
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:09:07.901
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:09:08.092
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:09:08.164
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:11:13.803
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:11:15.817
+!MESSAGE Could not check for update (Could not obtain update site)
+!SESSION 2020-04-26 11:17:18.653 -----------------------------------------------
+eclipse.buildId=4.15.0.I20200305-0155
+java.version=14.0.1
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.dsl.product -keyring /Users/lallu/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.dsl.product -keyring /Users/lallu/.eclipse_keyring
+
+!ENTRY org.eclipse.core.net 1 0 2020-04-26 11:17:28.581
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.buildship.core 2 2 2020-04-26 11:17:39.180
+!MESSAGE Synchronize project it.unibo.demoxxx failed due to an error in the referenced Gradle build.
+!STACK 0
+org.gradle.tooling.BuildException: Could not run phased build action using Gradle distribution 'https://services.gradle.org/distributions/gradle-6.0-bin.zip'.
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:51)
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:29)
+	at org.gradle.tooling.internal.consumer.ResultHandlerAdapter.onFailure(ResultHandlerAdapter.java:43)
+	at org.gradle.tooling.internal.consumer.async.DefaultAsyncConsumerActionExecutor$1$1.run(DefaultAsyncConsumerActionExecutor.java:62)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+	at org.gradle.tooling.internal.consumer.BlockingResultHandler.getResult(BlockingResultHandler.java:46)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:63)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:31)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runPhasedModelQuery(EclipseModelUtils.java:110)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryCompositeModelWithRuntimInfo(EclipseModelUtils.java:85)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryModels(EclipseModelUtils.java:59)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$null$4(DefaultModelProvider.java:75)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$GradleConnectionOperation.runInToolingApi(DefaultGradleBuild.java:329)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.withConnection(DefaultGradleBuild.java:122)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$fetchEclipseProjectAndRunSyncTasks$5(DefaultModelProvider.java:75)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4878)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3529)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2278)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2155)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2045)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3953)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4873)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.getFromCache(DefaultModelProvider.java:98)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.executeOperation(DefaultModelProvider.java:90)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.fetchEclipseProjectAndRunSyncTasks(DefaultModelProvider.java:72)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:226)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:192)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:100)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.gradle.internal.exceptions.LocationAwareException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.transform(DefaultExceptionAnalyser.java:99)
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.collectFailures(DefaultExceptionAnalyser.java:65)
+	at org.gradle.initialization.exception.MultipleBuildFailuresExceptionAnalyser.transform(MultipleBuildFailuresExceptionAnalyser.java:48)
+	at org.gradle.initialization.exception.StackTraceSanitizingExceptionAnalyser.transform(StackTraceSanitizingExceptionAnalyser.java:30)
+	at org.gradle.initialization.DefaultGradleLauncher.finishBuild(DefaultGradleLauncher.java:166)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:133)
+	at org.gradle.initialization.DefaultGradleLauncher.executeTasks(DefaultGradleLauncher.java:110)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:60)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:57)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:85)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:78)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:189)
+	at org.gradle.internal.work.StopShieldingWorkerLeaseService.withLocks(StopShieldingWorkerLeaseService.java:40)
+	at org.gradle.internal.invocation.GradleBuildController.doBuild(GradleBuildController.java:78)
+	at org.gradle.internal.invocation.GradleBuildController.run(GradleBuildController.java:57)
+	at org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(ClientProvidedPhasedActionRunner.java:60)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:63)
+	at org.gradle.tooling.internal.provider.ValidatingBuildActionRunner.run(ValidatingBuildActionRunner.java:32)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:39)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:51)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:416)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:406)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:102)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.call(DelegatingBuildOperationExecutor.java:36)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner.run(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:50)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:47)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:78)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:47)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:31)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:42)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:28)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:78)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:52)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:59)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:36)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:68)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:38)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:37)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:26)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:43)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:29)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:60)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:32)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:55)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:41)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:48)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:32)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:68)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:27)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:78)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:75)
+	at org.gradle.util.Swapper.swap(Swapper.java:38)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:75)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:55)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:82)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:297)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+Caused by: org.gradle.api.reflect.ObjectInstantiationException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:64)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.getScript(DefaultScriptRunnerFactory.java:56)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.run(DefaultScriptRunnerFactory.java:86)
+	at org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(DefaultScriptPluginFactory.java:210)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1$1.run(BuildOperationScriptPlugin.java:69)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:66)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.internal.DefaultUserCodeApplicationContext.apply(DefaultUserCodeApplicationContext.java:49)
+	at org.gradle.configuration.BuildOperationScriptPlugin.apply(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.DefaultInitScriptProcessor.process(DefaultInitScriptProcessor.java:50)
+	at org.gradle.initialization.InitScriptHandler$1.run(InitScriptHandler.java:55)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.InitScriptHandler.executeScripts(InitScriptHandler.java:49)
+	at org.gradle.initialization.DefaultSettingsPreparer.prepareSettings(DefaultSettingsPreparer.java:33)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.doLoadBuild(BuildOperatingFiringSettingsPreparer.java:59)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.run(BuildOperatingFiringSettingsPreparer.java:54)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer.prepareSettings(BuildOperatingFiringSettingsPreparer.java:42)
+	at org.gradle.initialization.DefaultGradleLauncher.prepareSettings(DefaultGradleLauncher.java:194)
+	at org.gradle.initialization.DefaultGradleLauncher.doClassicBuildStages(DefaultGradleLauncher.java:138)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:130)
+	... 75 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.runtime.InvokerHelper
+	at org.gradle.groovy.scripts.Script.<init>(Script.java:25)
+	at org.gradle.groovy.scripts.BasicScript.<init>(BasicScript.java:34)
+	at org.gradle.groovy.scripts.DefaultScript.<init>(DefaultScript.java:63)
+	at org.gradle.initialization.InitScript.<init>(InitScript.java:22)
+	at eclipsePlugin_alnkab2jwi1heim7pcn91wojr.<init>(/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/issLab20-excercises/Eclipse Workspace/.metadata/.plugins/org.eclipse.buildship.core/init.d/eclipsePlugin.gradle)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:62)
+	... 114 more
+
+!ENTRY org.eclipse.buildship.core 2 2 2020-04-26 11:17:39.193
+!MESSAGE Synchronize Gradle projects with workspace failed due to an error in the referenced Gradle build.
+!STACK 0
+org.gradle.tooling.BuildException: Could not run phased build action using Gradle distribution 'https://services.gradle.org/distributions/gradle-6.0-bin.zip'.
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:51)
+	at org.gradle.tooling.internal.consumer.ExceptionTransformer.transform(ExceptionTransformer.java:29)
+	at org.gradle.tooling.internal.consumer.ResultHandlerAdapter.onFailure(ResultHandlerAdapter.java:43)
+	at org.gradle.tooling.internal.consumer.async.DefaultAsyncConsumerActionExecutor$1$1.run(DefaultAsyncConsumerActionExecutor.java:62)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+	at org.gradle.tooling.internal.consumer.BlockingResultHandler.getResult(BlockingResultHandler.java:46)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:63)
+	at org.gradle.tooling.internal.consumer.DefaultPhasedBuildActionExecuter.run(DefaultPhasedBuildActionExecuter.java:31)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runPhasedModelQuery(EclipseModelUtils.java:110)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryCompositeModelWithRuntimInfo(EclipseModelUtils.java:85)
+	at org.eclipse.buildship.core.internal.workspace.EclipseModelUtils.runTasksAndQueryModels(EclipseModelUtils.java:59)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$null$4(DefaultModelProvider.java:75)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$GradleConnectionOperation.runInToolingApi(DefaultGradleBuild.java:329)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.withConnection(DefaultGradleBuild.java:122)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.lambda$fetchEclipseProjectAndRunSyncTasks$5(DefaultModelProvider.java:75)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4878)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3529)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2278)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2155)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2045)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3953)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4873)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.getFromCache(DefaultModelProvider.java:98)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.executeOperation(DefaultModelProvider.java:90)
+	at org.eclipse.buildship.core.internal.workspace.DefaultModelProvider.fetchEclipseProjectAndRunSyncTasks(DefaultModelProvider.java:72)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.runInToolingApi(DefaultGradleBuild.java:226)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild$SynchronizeOperation.run(DefaultGradleBuild.java:192)
+	at org.eclipse.buildship.core.internal.DefaultGradleBuild.synchronize(DefaultGradleBuild.java:100)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:64)
+	at org.eclipse.buildship.core.internal.workspace.SynchronizationJob.runInToolingApi(SynchronizationJob.java:30)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob$1.runInToolingApi(ToolingApiJob.java:54)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager$WorkspaceRunnableAdapter.run(DefaultToolingApiOperationManager.java:58)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.buildship.core.internal.operation.DefaultToolingApiOperationManager.run(DefaultToolingApiOperationManager.java:39)
+	at org.eclipse.buildship.core.internal.operation.ToolingApiJob.run(ToolingApiJob.java:65)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.gradle.internal.exceptions.LocationAwareException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.transform(DefaultExceptionAnalyser.java:99)
+	at org.gradle.initialization.exception.DefaultExceptionAnalyser.collectFailures(DefaultExceptionAnalyser.java:65)
+	at org.gradle.initialization.exception.MultipleBuildFailuresExceptionAnalyser.transform(MultipleBuildFailuresExceptionAnalyser.java:48)
+	at org.gradle.initialization.exception.StackTraceSanitizingExceptionAnalyser.transform(StackTraceSanitizingExceptionAnalyser.java:30)
+	at org.gradle.initialization.DefaultGradleLauncher.finishBuild(DefaultGradleLauncher.java:166)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:133)
+	at org.gradle.initialization.DefaultGradleLauncher.executeTasks(DefaultGradleLauncher.java:110)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:60)
+	at org.gradle.internal.invocation.GradleBuildController$1.execute(GradleBuildController.java:57)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:85)
+	at org.gradle.internal.invocation.GradleBuildController$3.create(GradleBuildController.java:78)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:189)
+	at org.gradle.internal.work.StopShieldingWorkerLeaseService.withLocks(StopShieldingWorkerLeaseService.java:40)
+	at org.gradle.internal.invocation.GradleBuildController.doBuild(GradleBuildController.java:78)
+	at org.gradle.internal.invocation.GradleBuildController.run(GradleBuildController.java:57)
+	at org.gradle.tooling.internal.provider.runner.ClientProvidedPhasedActionRunner.run(ClientProvidedPhasedActionRunner.java:60)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:63)
+	at org.gradle.tooling.internal.provider.ValidatingBuildActionRunner.run(ValidatingBuildActionRunner.java:32)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:39)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:51)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner$3.call(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:416)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$CallableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:406)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:102)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.call(DelegatingBuildOperationExecutor.java:36)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionRunner.run(RunAsBuildOperationBuildActionRunner.java:45)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:50)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter$1.transform(InProcessBuildActionExecuter.java:47)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:78)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:47)
+	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:31)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:42)
+	at org.gradle.launcher.exec.BuildTreeScopeBuildActionExecuter.execute(BuildTreeScopeBuildActionExecuter.java:28)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:78)
+	at org.gradle.tooling.internal.provider.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:52)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:59)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecuter.execute(SubscribableBuildActionExecuter.java:36)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:68)
+	at org.gradle.tooling.internal.provider.SessionScopeBuildActionExecuter.execute(SessionScopeBuildActionExecuter.java:38)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:37)
+	at org.gradle.tooling.internal.provider.GradleThreadBuildActionExecuter.execute(GradleThreadBuildActionExecuter.java:26)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:43)
+	at org.gradle.tooling.internal.provider.ParallelismConfigurationBuildActionExecuter.execute(ParallelismConfigurationBuildActionExecuter.java:29)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:60)
+	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:32)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:55)
+	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:41)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:48)
+	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:32)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:68)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:27)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:78)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:75)
+	at org.gradle.util.Swapper.swap(Swapper.java:38)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:75)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:55)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:82)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:297)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+Caused by: org.gradle.api.reflect.ObjectInstantiationException: Could not create an instance of type eclipsePlugin_alnkab2jwi1heim7pcn91wojr.
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:64)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.getScript(DefaultScriptRunnerFactory.java:56)
+	at org.gradle.groovy.scripts.internal.DefaultScriptRunnerFactory$ScriptRunnerImpl.run(DefaultScriptRunnerFactory.java:86)
+	at org.gradle.configuration.DefaultScriptPluginFactory$ScriptPluginImpl.apply(DefaultScriptPluginFactory.java:210)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1$1.run(BuildOperationScriptPlugin.java:69)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:66)
+	at org.gradle.configuration.BuildOperationScriptPlugin$1.execute(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.internal.DefaultUserCodeApplicationContext.apply(DefaultUserCodeApplicationContext.java:49)
+	at org.gradle.configuration.BuildOperationScriptPlugin.apply(BuildOperationScriptPlugin.java:63)
+	at org.gradle.configuration.DefaultInitScriptProcessor.process(DefaultInitScriptProcessor.java:50)
+	at org.gradle.initialization.InitScriptHandler$1.run(InitScriptHandler.java:55)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.InitScriptHandler.executeScripts(InitScriptHandler.java:49)
+	at org.gradle.initialization.DefaultSettingsPreparer.prepareSettings(DefaultSettingsPreparer.java:33)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.doLoadBuild(BuildOperatingFiringSettingsPreparer.java:59)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer$LoadBuild.run(BuildOperatingFiringSettingsPreparer.java:54)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:402)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$RunnableBuildOperationWorker.execute(DefaultBuildOperationExecutor.java:394)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor$1.execute(DefaultBuildOperationExecutor.java:165)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:250)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.execute(DefaultBuildOperationExecutor.java:158)
+	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:92)
+	at org.gradle.internal.operations.DelegatingBuildOperationExecutor.run(DelegatingBuildOperationExecutor.java:31)
+	at org.gradle.initialization.BuildOperatingFiringSettingsPreparer.prepareSettings(BuildOperatingFiringSettingsPreparer.java:42)
+	at org.gradle.initialization.DefaultGradleLauncher.prepareSettings(DefaultGradleLauncher.java:194)
+	at org.gradle.initialization.DefaultGradleLauncher.doClassicBuildStages(DefaultGradleLauncher.java:138)
+	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:130)
+	... 75 more
+Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.codehaus.groovy.runtime.InvokerHelper
+	at org.gradle.groovy.scripts.Script.<init>(Script.java:25)
+	at org.gradle.groovy.scripts.BasicScript.<init>(BasicScript.java:34)
+	at org.gradle.groovy.scripts.DefaultScript.<init>(DefaultScript.java:63)
+	at org.gradle.initialization.InitScript.<init>(InitScript.java:22)
+	at eclipsePlugin_alnkab2jwi1heim7pcn91wojr.<init>(/Users/lallu/Desktop/Laura/Uni/Magistrale/1A_2C/Ingegneria dei Sistemi Software/issLab20-excercises/Eclipse Workspace/.metadata/.plugins/org.eclipse.buildship.core/init.d/eclipsePlugin.gradle)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.gradle.internal.reflect.DirectInstantiator.newInstance(DirectInstantiator.java:62)
+	... 114 more
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:45:51.132
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:46:41.164
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:48:33.706
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:48:41.848
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:49:55.739
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-26 11:50:00.238
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 10:35:28.345
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 10:35:35.933
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:07:26.144
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:07:52.656
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:08:31.232
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:14:23.856
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:14:47.267
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:15:58.880
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:21:12.381
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:21:28.901
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:25:28.586
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:25:51.900
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:37:42.601
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:38:23.312
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-27 11:47:27.975
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:21:50.298
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:22:01.859
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:22:08.314
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:22:19.336
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:22:56.757
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:23:08.134
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:23:22.184
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:23:37.118
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:24:00.446
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:24:04.158
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:24:49.549
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:26:35.043
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:27:19.289
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:29:55.185
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:30:10.290
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:32:46.105
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:32:55.174
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:33:42.902
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:35:57.757
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:36:48.267
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:38:17.889
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:38:39.790
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:38:49.401
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:38:59.152
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:39:03.103
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:41:42.805
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:43:52.710
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:45:15.882
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:45:30.144
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:45:40.444
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:46:19.954
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:47:23.938
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:47:40.301
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:48:15.222
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:49:55.669
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:50:42.365
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:50:54.653
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:51:10.375
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:51:20.869
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:51:36.865
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:51:52.767
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:52:19.548
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:52:22.458
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:52:42.835
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:52:48.662
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:54:41.328
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 09:55:23.621
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:00:35.876
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:02:27.628
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:02:39.043
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:08:17.708
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:08:21.527
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:08:32.370
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:08:46.271
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:12:20.100
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:16:27.447
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:16:50.969
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:21:44.389
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:22:54.441
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:23:36.183
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:26:05.654
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:27:13.663
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:28:04.516
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:28:24.455
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:30:23.794
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.jetbrains.kotlin.core 2 0 2020-04-28 10:31:18.193
+!MESSAGE Could not check for update (Could not obtain update site)
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-04-28 10:42:25.350
+!MESSAGE Exception while reading /it.unibo.kotlinIntro/.classpath
+!STACK 0
+java.io.IOException: Bad format
+	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1274)
+	at org.eclipse.jdt.internal.core.JavaProject.readFileEntriesWithException(JavaProject.java:2970)
+	at org.eclipse.jdt.internal.core.JavaProject.readFileEntries(JavaProject.java:2980)
+	at org.eclipse.jdt.internal.core.JavaProject.readOutputLocation(JavaProject.java:2993)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock.init(BuildPathsBlock.java:329)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createWithJava(BuildPathsPropertyPage.java:172)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createContents(BuildPathsPropertyPage.java:90)
+	at org.eclipse.jface.preference.PreferencePage.createControl(PreferencePage.java:244)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createControl(BuildPathsPropertyPage.java:101)
+	at org.eclipse.jface.preference.PreferenceDialog.createPageControl(PreferenceDialog.java:1433)
+	at org.eclipse.jface.preference.PreferenceDialog$8.run(PreferenceDialog.java:1196)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.JFaceUtil.lambda$0(JFaceUtil.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.preference.PreferenceDialog.showPage(PreferenceDialog.java:1188)
+	at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.showPage(FilteredPreferenceDialog.java:630)
+	at org.eclipse.jface.preference.PreferenceDialog$5.lambda$0(PreferenceDialog.java:660)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.jface.preference.PreferenceDialog$5.selectionChanged(PreferenceDialog.java:657)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.JFaceUtil.lambda$0(JFaceUtil.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.setSelection(StructuredViewer.java:1660)
+	at org.eclipse.jface.viewers.TreeViewer.setSelection(TreeViewer.java:1084)
+	at org.eclipse.jface.preference.PreferenceDialog.selectSavedItem(PreferenceDialog.java:990)
+	at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.selectSavedItem(FilteredPreferenceDialog.java:680)
+	at org.eclipse.jface.preference.PreferenceDialog.lambda$0(PreferenceDialog.java:348)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.jface.preference.PreferenceDialog.createContents(PreferenceDialog.java:345)
+	at org.eclipse.jface.window.Window.create(Window.java:431)
+	at org.eclipse.jface.dialogs.Dialog.create(Dialog.java:1094)
+	at org.eclipse.ui.internal.dialogs.PropertyDialog.createDialogOn(PropertyDialog.java:78)
+	at org.eclipse.ui.dialogs.PreferencesUtil.createPropertyDialogOn(PreferencesUtil.java:217)
+	at org.eclipse.ui.dialogs.PreferencesUtil.createPropertyDialogOn(PreferencesUtil.java:145)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.ConfigureBuildPathAction.run(ConfigureBuildPathAction.java:88)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:474)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:579)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:413)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4387)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1512)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1535)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1520)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1324)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4174)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3791)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 12; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:261)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1272)
+	... 68 more
+
+!ENTRY org.eclipse.jdt.core 4 4 2020-04-28 10:42:25.354
+!MESSAGE Exception while reading /it.unibo.kotlinIntro/.classpath
+!STACK 0
+java.io.IOException: Bad format
+	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1274)
+	at org.eclipse.jdt.internal.core.JavaProject.readFileEntriesWithException(JavaProject.java:2970)
+	at org.eclipse.jdt.internal.core.JavaProject.readFileEntries(JavaProject.java:2980)
+	at org.eclipse.jdt.internal.core.JavaProject.readRawClasspath(JavaProject.java:3014)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock.init(BuildPathsBlock.java:331)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createWithJava(BuildPathsPropertyPage.java:172)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createContents(BuildPathsPropertyPage.java:90)
+	at org.eclipse.jface.preference.PreferencePage.createControl(PreferencePage.java:244)
+	at org.eclipse.jdt.internal.ui.preferences.BuildPathsPropertyPage.createControl(BuildPathsPropertyPage.java:101)
+	at org.eclipse.jface.preference.PreferenceDialog.createPageControl(PreferenceDialog.java:1433)
+	at org.eclipse.jface.preference.PreferenceDialog$8.run(PreferenceDialog.java:1196)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.JFaceUtil.lambda$0(JFaceUtil.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.preference.PreferenceDialog.showPage(PreferenceDialog.java:1188)
+	at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.showPage(FilteredPreferenceDialog.java:630)
+	at org.eclipse.jface.preference.PreferenceDialog$5.lambda$0(PreferenceDialog.java:660)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.jface.preference.PreferenceDialog$5.selectionChanged(PreferenceDialog.java:657)
+	at org.eclipse.jface.viewers.StructuredViewer$3.run(StructuredViewer.java:823)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.JFaceUtil.lambda$0(JFaceUtil.java:47)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.firePostSelectionChanged(StructuredViewer.java:820)
+	at org.eclipse.jface.viewers.StructuredViewer.setSelection(StructuredViewer.java:1660)
+	at org.eclipse.jface.viewers.TreeViewer.setSelection(TreeViewer.java:1084)
+	at org.eclipse.jface.preference.PreferenceDialog.selectSavedItem(PreferenceDialog.java:990)
+	at org.eclipse.ui.internal.dialogs.FilteredPreferenceDialog.selectSavedItem(FilteredPreferenceDialog.java:680)
+	at org.eclipse.jface.preference.PreferenceDialog.lambda$0(PreferenceDialog.java:348)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.jface.preference.PreferenceDialog.createContents(PreferenceDialog.java:345)
+	at org.eclipse.jface.window.Window.create(Window.java:431)
+	at org.eclipse.jface.dialogs.Dialog.create(Dialog.java:1094)
+	at org.eclipse.ui.internal.dialogs.PropertyDialog.createDialogOn(PropertyDialog.java:78)
+	at org.eclipse.ui.dialogs.PreferencesUtil.createPropertyDialogOn(PreferencesUtil.java:217)
+	at org.eclipse.ui.dialogs.PreferencesUtil.createPropertyDialogOn(PreferencesUtil.java:145)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.ConfigureBuildPathAction.run(ConfigureBuildPathAction.java:88)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:474)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:579)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:413)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4387)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1512)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1535)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1520)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1324)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4174)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3791)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 12; columnNumber: 2; The content of elements must consist of well-formed character data or markup.
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:261)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.eclipse.jdt.internal.core.JavaProject.decodeClasspath(JavaProject.java:1272)
+	... 68 more

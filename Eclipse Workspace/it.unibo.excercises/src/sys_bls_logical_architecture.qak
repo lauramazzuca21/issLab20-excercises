@@ -1,0 +1,113 @@
+System /*-trace*/ sys_bls_logical_architecture
+
+Request 	cmdOn 	: cmdOn(ARG)
+Request 	cmdOff 	: cmdOff(ARG)
+Reply 		ack		: ack(ARG)
+
+Event 		button  : button( KIND )
+
+Dispatch	blink	: blink(ARG) 
+
+Context ctxlogicbutton ip [host="localhost" port=8010]
+Context ctxlogicled ip [host="127.0.0.1" port=8077]
+
+QActor button context ctxlogicbutton {
+		
+	State init initial {
+		println( "BUTTON init done. Default initial led and button state: Off" )
+	}
+	Goto turningOff
+
+	State turningOff {
+		request led -m cmdOff : cmdOff(0)
+	}
+	Transition t0 whenReply ack -> off
+	
+	State off {
+		printCurrentMessage
+		println("	BUTTON turned OFF	")
+	}
+	Transition t0 whenEvent button -> turningOn
+
+	State turningOn {
+		request led -m cmdOn : cmdOn(1)
+	}
+	Transition t0 whenReply ack -> on
+	
+	State on {
+		printCurrentMessage
+		println("	BUTTON turned ON	")
+	}
+	Transition t0 whenEvent button -> turningOff
+	
+}
+
+/*
+ * For local test
+ */
+
+QActor user context ctxlogicbutton {
+	State s0 initial { 	
+		delay 2500
+		println("USER presses button")
+		emit button : button( on )
+		delay 5500
+		println("USER presses button")
+		emit button : button( off )
+		terminate 0 
+	}
+	
+}
+ /* */
+
+
+QActor led context ctxlogicled {
+	
+	State init initial {
+		println( "	LED init done." )
+	}
+	Transition t0 	whenRequest cmdOn -> on
+					whenRequest cmdOff -> off
+	
+	State off {
+		onMsg(cmdOff : cmdOff(ARG)) {
+			[#  val V = payloadArg(0)
+ 				val Answer = "ackTo_${V}" 
+ 			#]
+			replyTo cmdOff with ack : ack($Answer)
+			println( "led has sent ACK with Answer: $Answer")
+		}
+		println( "led has been turned off")
+	} 
+	Transition t0 	whenRequest cmdOn -> on
+	
+	State on {
+		onMsg(cmdOn : cmdOn(ARG)) {
+			[#  val V = payloadArg(0)
+ 				val Answer = "ackTo_${V}" 
+ 			#]
+			replyTo cmdOn with ack : ack($Answer)
+			println( "led has sent ACK with Answer: $Answer")
+		}
+		
+		println( "led has been turned on" )
+	}
+	Goto blinkOn
+	
+	
+	State blinkOn {
+		println( "blink ON" )
+		delay 500
+		forward led -m blink : blink(off)
+	}
+	Transition t0 	whenRequest cmdOff -> off
+					whenMsg blink -> blinkOff
+	
+	State blinkOff {
+		println( "blink OFF" )
+		delay 500
+		forward led -m blink : blink(on)
+	}
+	Transition t0 	whenRequest cmdOff -> off
+					whenMsg blink -> blinkOn
+}
