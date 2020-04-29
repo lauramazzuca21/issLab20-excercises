@@ -1,0 +1,6 @@
+item(manager,init,msg(autoStartSysMsg,dispatch,manager,manager,start,7)).
+item(led,s0,msg(autoStartSysMsg,dispatch,led,led,start,5)).
+item(led,waitCmd,msg(turnOn,dispatch,manager,led,turnOn(1),8)).
+item(led,waitCmd,msg(turnOff,dispatch,manager,led,turnOff(1),9)).
+item(led,waitCmd,msg(turnOn,dispatch,manager,led,turnOn(1),10)).
+item(led,waitCmd,msg(turnOff,dispatch,manager,led,turnOff(1),11)).

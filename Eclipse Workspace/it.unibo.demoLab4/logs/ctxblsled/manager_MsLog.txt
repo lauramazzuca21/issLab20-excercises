@@ -1,0 +1,1 @@
+item(manager,init,msg(autoStartSysMsg,dispatch,manager,manager,start,7)).

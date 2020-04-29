@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+	<!--
+	body
+	{
+		margin-left:  30px;
+		margin-right: 30px;
+	};
+	
+	P
+	{
+		font-family: Tahoma;
+		font-size: 10pt;
+	};
+	
+	a, a:visited, a:active, a:link, a:hover {
+		text-decoration: underline;
+		color: #545454;
+		background-color: transparent;
+	}
+	
+	a:hover {
+		background-color: #cccccc;
+	}
+	
+	
+	hr {
+		clear: both;
+		height: 1px;
+		color: #242424;
+		background-color: transparent;
+	}
+	
+	h1, h2, h3 {
+		color: #242424;
+		clear: left;
+		font: 100% Tahoma, Helvetica, Arial, sans-serif;
+		margin: 10;
+		margin-right: 15px;
+		margin-bottom: 0.5em;
+		padding-top: 0.5em;
+		border-bottom: 1px solid #242424;
+	}
+	
+	h1 {
+		font-size: 150%;
+		background-color: #b2c0ff;
+	}
+	
+	h2 {
+		background-color: #d9fbff;
+		font-size: 110%;
+	}
+	
+	h3 {
+		background-color: #e6ccff;
+		font-size: 80%;
+	}
+	h4 {
+		background-color: #99ffcc;
+		font-size: 100%;
+		width: 750px;
+	}
+	#i {
+		color: #ff1010;
+	}
+	tt{
+		font-family: "Arial";
+		font-size: 80%;
+		color: #006600;
+	}
+	em{
+		font-family: "Arial";
+		font-size: 80%;
+		font-weight: bold;
+		border-style:solid;
+		border-color: #ccffff;
+		color: #0033cc;
+	}
+	bc{
+		font-family: "Arial";
+		font-size: 80%;
+		font-weight: bold;
+		color: #990000;
+		background-color: #fcf8c7;
+	}
+	k{
+		font-family: "Arial";
+		font-weight: bold;
+		color: #990000;
+		 
+	}
+	ks{
+		font-family: "Arial";
+		font-weight: bold;
+		color: #0000CD	;
+		 
+	}
+	kc{
+		font-family: "Arial";
+		font-weight: bold;
+		color: #008000	;
+		 
+	}
+	pre{
+		font-family: "Helvetica";
+		font-size: 60%;
+		background-color: #fcf8c7;
+		border: 1px solid blue;
+	}
+	m{
+		font-family: "Helvetica";
+		line-height: 100%;
+		 font-size: 75%;
+	}
+	div.body{
+		width: 800px;
+		font-size: 18px;
+	}    
+	div.req{
+		background-color: #d9ffb3;
+		font-size: 18px;
+		width: 700px;
+		border: 3px solid green;
+		padding: 15px;
+		margin: 10px;
+	}       
+	div.remark{
+		background-color: #FFFC33;     
+		border: 3px solid green;
+		padding: 15px;
+		margin: 10px;
+	}  
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}         
+		
+	  -->
+	</style>
+    
+<head>
+   
+<title>Lab ...</title></head>
+    
+<body>
+<div id="top">
+<h1>LABORATORIO DI SISTEMI SOFTWARE <font size="5"></font> </h1>
+</div>  
+
+<div class="body"> 
+<h2>Introduction</h2>
+ Remember our motto:<br>   <k>there is no code without a project, no project
+without problem analysis and no problem without requirements</k>.
+ 
+ 
+<h2>Requirements</h2>
+<div class="req">
+    Design and build a ButtonLed software system (bls) that makes human users able to control a led according to different control policies each time a button is pressed:<br>
+<ol>
+    <li> es2-Blink/un-blink the led</li>
+</ol>
+The system should be a distributed system, in which the Button and the Led run on a different computational supports, e.g. a Conventional PC, a RaspberryPi or Arduino.
+</div>
+
+ 
+
+<h2>Requirement analysis</h2>
+<div>
+	<div class="remark">
+		<i>i)</i> clarify the meaning of the <i>names</i> and of the <i>verbs</i> included in the requirement text given by the customer.<br/>
+	</div>
+	<ol>
+		<li><k>LED</k>: electrical component (diode) that emits light. When it doesn't emit light it is considered turned off, when it emits light it's considered as turned on; </li>
+		<li><k>Blinking LED</k>: a LED is considered blinking when it alternates in fixed time-frames the emission of light to the non-emission of it; </li>
+		<li><k>Button</k>: a switch mechanism to control some aspects of a machine or process. In this case, it'll have to turn on or off the led functionality to blink.</li>
+		<li><k>Control [the led]</k>: the human user should be able to activate and deactivate any led control policy at his will through interaction with the button. </li>
+		<li><k>Control Policies</k>: a set of options of the led that the pressing of the button can activate or deactivate. </li>
+	</ol>
+
+	<div class="remark">
+		<i>ii)</i> define a first working prototype (and a first set of <k>functional TestPlan</k>) as a formal model of the requirements.<br/>
+	</div>
+	<pre><code>
+	<bc>System</bc> sys_bls
+
+	<bc>Dispatch</bc> cmdOn 	: cmdOn(ARG)
+	<bc>Dispatch</bc> cmdOff 	: cmdOff(ARG)
+	<bc>Event</bc> 	button  	: button( KIND ) 
+
+	<bc>Context</bc> ctxbutton <bc>ip</bc> [host="localhost" port=8010]
+	<bc>Context</bc> ctxled <bc>ip</bc> [host="127.0.0.1" port=8077]
+
+	<bc>QActor</bc> button <bc>context</bc> ctxbutton {
+		
+		<bc>State</bc> off <bc>initial</bc> {
+			discardMsg On
+			<bc>println</bc>("	Button pressed: Turned Off	")
+			<bc>forward</bc> led <bc>-m</bc> cmdOff : cmdOff(1)
+		}
+		<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> on
+		
+		<bc>State</bc> on {
+			<bc>println</bc>("	Button pressed: Turned On	")
+			<bc>forward</bc> led <bc>-m</bc> cmdOn : cmdOn(1)
+		}
+		<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> off
+	}
+
+	<bc>QActor</bc> led <bc>context</bc> ctxled {
+
+		<bc>State</bc> off <bc>initial</bc> {
+			discardMsg On
+			<bc>println</bc>("	Turned Off	")
+		} 
+		<bc>Transition</bc> t0 	<bc>whenMsg</bc> cmdOn -> on
+		
+		<bc>State</bc> on {
+			<bc>println</bc>("	Turned On	")
+			<bc>println</bc>("	=====Blinking=====	")
+		}
+		<bc>Transition</bc> t0 	<bc>whenMsg</bc> cmdOff -> off
+	}
+
+	/* For local test */
+	<bc>QActor</bc> user <bc>context</bc> ctxbutton {
+		<bc>State</bc> s0 <bc>initial</bc> { 	
+			<bc>println</bc>("user presses button")
+			emit button : button( on )
+			<bc>delay</bc> 2500
+			<bc>println</bc>("user presses button")
+			emit button : button( off )
+			<bc>terminate</bc> 0 
+		}
+	}</code>
+</div>
+
+<h2>Problem analysis</h2>
+<div>
+	<div class="remark">
+		<i>i)</i>define the <k>logical architecture</k> of the system  (hopefully as an executable model)
+	</div>
+<pre><code>
+    <bc>System</bc> sys_bls
+
+<bc>Request</bc> 	cmdOn 	: cmdOn(ARG)
+<bc>Request</bc> 	cmdOff 	: cmdOff(ARG)
+<bc>Reply</bc> 		ack		: ack(ARG)
+<bc>Event</bc> 		button  : button( KIND )
+<bc>Dispatch</bc>	blink	: blink(ARG) 
+
+<bc>Context</bc> ctxlogicbutton <bc>ip</bc> [host="localhost" port=8010]
+<bc>Context</bc> ctxlogicled <bc>ip</bc> [host="127.0.0.1" port=8077]
+
+<bc>QActor</bc> button <bc>context</bc> ctxlogicbutton {
+		
+	<bc>State</bc> init <bc>initial</bc> {
+		<bc>println</bc>( "BUTTON init done. Default led and button state: Off" )
+	}
+	<bc>Goto</bc> turningOff
+
+	<bc>State</bc> turningOff {
+		<bc>request</bc> led <bc>-m</bc> cmdOff : cmdOff(0)
+	}
+	<bc>Transition</bc> t0 <bc>whenReply</bc> ack -> off
+	
+	<bc>State</bc> off {
+		<bc>printCurrentMessage</bc>
+		<bc>println</bc>("	BUTTON turned OFF	")
+	}
+	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> turningOn
+
+	<bc>State</bc> turningOn {
+		<bc>request</bc> led <bc>-m</bc> cmdOn : cmdOn(1)
+	}
+	<bc>Transition</bc> t0 <bc>whenReply</bc> ack -> on
+	
+	<bc>State</bc> on {
+		<bc>printCurrentMessage</bc>
+		<bc>println</bc>("	BUTTON turned ON	")
+	}
+	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> turningOff
+	
+}
+
+/*For local test*/
+<bc>QActor</bc> user <bc>context</bc> ctxlogicbutton {
+	<bc>State</bc> s0 <bc>initial</bc> { 	
+		<bc>delay</bc> 2500
+		<bc>println</bc>("USER presses button")
+		emit button : button( on )
+		<bc>delay</bc> 5500
+		<bc>println</bc>("USER presses button")
+		emit button : button( off )
+		<bc>terminate</bc> 0 
+	}
+	
+}
+
+<bc>QActor</bc> led <bc>context</bc> ctxlogicled {
+	
+	<bc>State</bc> init <bc>initial</bc> {
+        discardMsg On
+		<bc>println</bc>( "	LED init done." )
+	}
+	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOn -> on
+					<bc>whenRequest</bc> cmdOff -> off
+	
+	<bc>State</bc> off {
+		<bc>onMsg</bc>(cmdOff : cmdOff(ARG)) {
+			[#  val V = payloadArg(0)
+ 				val Answer = "ackTo_${V}" 
+ 			#]
+			<bc>replyTo</bc> cmdOff with ack : ack($Answer)
+			<bc>println</bc>( "led has sent ACK with Answer: $Answer")
+		}
+		<bc>println</bc>( "led has been turned off")
+	} 
+	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOn -> on
+	
+	<bc>State</bc> on {
+		<bc>onMsg</bc>(cmdOn : cmdOn(ARG)) {
+			[#  val V = payloadArg(0)
+ 				val Answer = "ackTo_${V}" 
+ 			#]
+			<bc>replyTo</bc> cmdOn with ack : ack($Answer)
+			<bc>println</bc>( "led has sent ACK with Answer: $Answer")
+		}
+		
+		<bc>println</bc>( "led has been turned on" )
+	}
+	<bc>Goto</bc> blinkOn
+	
+	<bc>State</bc> blinkOn {
+		<bc>println</bc>( "blink ON" )
+		<bc>delay</bc> 500
+		<bc>forward</bc> led <bc>-m</bc> blink : blink(off)
+	}
+	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOff -> off
+					<bc>whenMsg</bc> blink -> blinkOff
+	
+	<bc>State</bc> blinkOff {
+		<bc>println</bc>( "blink OFF" )
+		<bc>delay</bc> 500
+		<bc>forward</bc> led <bc>-m</bc> blink : blink(on)
+	}
+	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOff -> off
+					<bc>whenMsg</bc> blink -> blinkOn
+}
+</code>
+</div>
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+	      	
+<br><br> 	
+</div>  
+
+<div style="background-color:rgba(86, 56, 253, 0.9); width:60%;text-align:left;color:white">
+By Laura Mazzuca email: laura.mazzuca@studio.unibo.it  <br>
+<img src="./img/prof-pic.jpeg" alt="mbot" width="15%" height="15%">
+</div> 
+</body>
+</html>

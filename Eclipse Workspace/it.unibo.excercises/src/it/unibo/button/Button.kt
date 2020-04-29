@@ -21,33 +21,21 @@ class Button ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, sco
 					action { //it:State
 						println("BUTTON init done. Default initial led and button state: Off")
 					}
-					 transition( edgeName="goto",targetState="turningOff", cond=doswitch() )
-				}	 
-				state("turningOff") { //this:State
-					action { //it:State
-						request("cmdOff", "cmdOff(0)" ,"led" )  
-					}
-					 transition(edgeName="t00",targetState="off",cond=whenReply("ack"))
+					 transition( edgeName="goto",targetState="off", cond=doswitch() )
 				}	 
 				state("off") { //this:State
 					action { //it:State
-						println("$name in ${currentState.stateName} | $currentMsg")
 						println("	BUTTON turned OFF	")
+						forward("cmdOff", "cmdOff(1)" ,"led" ) 
 					}
-					 transition(edgeName="t01",targetState="turningOn",cond=whenEvent("button"))
-				}	 
-				state("turningOn") { //this:State
-					action { //it:State
-						request("cmdOn", "cmdOn(1)" ,"led" )  
-					}
-					 transition(edgeName="t02",targetState="on",cond=whenReply("ack"))
+					 transition(edgeName="t00",targetState="on",cond=whenEvent("button"))
 				}	 
 				state("on") { //this:State
 					action { //it:State
-						println("$name in ${currentState.stateName} | $currentMsg")
 						println("	BUTTON turned ON	")
+						forward("cmdOn", "cmdOn(1)" ,"led" ) 
 					}
-					 transition(edgeName="t03",targetState="turningOff",cond=whenEvent("button"))
+					 transition(edgeName="t01",targetState="off",cond=whenEvent("button"))
 				}	 
 			}
 		}

@@ -19,10 +19,10 @@ class Watcher ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, sc
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
-						println("watcher emits fire")
+						println("            watcher emits fire")
 						emit("alarm", "alarm(fire)" ) 
-						delay(300) 
-						println("watcher emits tsunami")
+						delay(1200) 
+						println("            watcher emits tsunami")
 						emit("alarm", "alarm(tsunami)" ) 
 						terminate(0)
 					}

@@ -16,57 +16,61 @@ class Led ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 	@kotlinx.coroutines.ObsoleteCoroutinesApi
 	@kotlinx.coroutines.ExperimentalCoroutinesApi			
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
+		 var blink = 0  
 		return { //this:ActionBasciFsm
 				state("init") { //this:State
 					action { //it:State
+						discardMessages = true
 						println("	LED init done.")
 					}
-					 transition(edgeName="t04",targetState="on",cond=whenRequest("cmdOn"))
-					transition(edgeName="t05",targetState="off",cond=whenRequest("cmdOff"))
+					 transition(edgeName="t02",targetState="on",cond=whenDispatch("cmdOn"))
+					transition(edgeName="t03",targetState="off",cond=whenDispatch("cmdOff"))
 				}	 
 				state("off") { //this:State
 					action { //it:State
-						if( checkMsgContent( Term.createTerm("cmdOff(ARG)"), Term.createTerm("cmdOff(ARG)"), 
-						                        currentMsg.msgContent()) ) { //set msgArgList
-								  val V = payloadArg(0)
-								 				val Answer = "ackTo_${V}" 
-								answer("cmdOff", "ack", "ack($Answer)"   )  
-								println("led has sent ACK with Answer: $Answer")
-						}
 						println("led has been turned off")
 					}
-					 transition(edgeName="t06",targetState="on",cond=whenRequest("cmdOn"))
+					 transition(edgeName="t04",targetState="on",cond=whenDispatch("cmdOn"))
 				}	 
 				state("on") { //this:State
 					action { //it:State
-						if( checkMsgContent( Term.createTerm("cmdOn(ARG)"), Term.createTerm("cmdOn(ARG)"), 
-						                        currentMsg.msgContent()) ) { //set msgArgList
-								  val V = payloadArg(0)
-								 				val Answer = "ackTo_${V}" 
-								answer("cmdOn", "ack", "ack($Answer)"   )  
-								println("led has sent ACK with Answer: $Answer")
-						}
 						println("led has been turned on")
 					}
-					 transition( edgeName="goto",targetState="blinkOn", cond=doswitch() )
+					 transition( edgeName="goto",targetState="blink", cond=doswitch() )
+				}	 
+				state("blink") { //this:State
+					action { //it:State
+						if(  var blink == 0  
+						 ){println("blink ON")
+						 var blink = 1  
+						}
+						else
+						 {println("blink OFF")
+						  var blink = 0  
+						 }
+						stateTimer = TimerActor("timer_blink", 
+							scope, context!!, "local_tout_led_blink", 500.toLong() )
+					}
+					 transition(edgeName="t05",targetState="blink",cond=whenTimeout("local_tout_led_blink"))   
+					transition(edgeName="t06",targetState="off",cond=whenDispatch("cmdOff"))
 				}	 
 				state("blinkOn") { //this:State
 					action { //it:State
 						println("blink ON")
 						delay(500) 
-						forward("blink", "blink(off)" ,"led" ) 
+						emit("blink", "blink(off)" ) 
 					}
-					 transition(edgeName="t07",targetState="off",cond=whenRequest("cmdOff"))
-					transition(edgeName="t08",targetState="blinkOff",cond=whenDispatch("blink"))
+					 transition(edgeName="t07",targetState="off",cond=whenDispatch("cmdOff"))
+					transition(edgeName="t08",targetState="blinkOff",cond=whenEvent("blink"))
 				}	 
 				state("blinkOff") { //this:State
 					action { //it:State
 						println("blink OFF")
 						delay(500) 
-						forward("blink", "blink(on)" ,"led" ) 
+						emit("blink", "blink(on)" ) 
 					}
-					 transition(edgeName="t09",targetState="off",cond=whenRequest("cmdOff"))
-					transition(edgeName="t010",targetState="blinkOn",cond=whenDispatch("blink"))
+					 transition(edgeName="t09",targetState="off",cond=whenDispatch("cmdOff"))
+					transition(edgeName="t010",targetState="blinkOn",cond=whenEvent("blink"))
 				}	 
 			}
 		}
