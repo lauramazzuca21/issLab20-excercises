@@ -19,7 +19,7 @@ Context ctxblsled    ip [host="localhost" port=8075]
 QActor led context ctxblsled {  
 [# 
 	var state = false
-	val leddev = resources.bls.kotlin.led.create()
+	val leddev = resources.bls.kotlin.ledsupport.create("ledgui")
 #]    
 	State s0 initial {  
 		//run resources.it.unibo.bls.devices.gui.LedAsGui.create( )

@@ -18,7 +18,7 @@ class Led ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
 		 
 			var state = false
-			val leddev = resources.bls.kotlin.led.create()
+			val leddev = resources.bls.kotlin.ledsupport.create("ledgui")
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State

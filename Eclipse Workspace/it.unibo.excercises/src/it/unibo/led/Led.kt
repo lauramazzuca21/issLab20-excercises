@@ -40,8 +40,9 @@ class Led ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 				}	 
 				state("blink") { //this:State
 					action { //it:State
-						if(  var blink == 0  
-						 ){println("blink ON")
+						if(  var blink == 0  )
+						{
+							println("blink ON")
 						 var blink = 1  
 						}
 						else

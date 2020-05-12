@@ -20,7 +20,17 @@ class Qa0 ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 				state("s0") { //this:State
 					action { //it:State
 						println("Hello World")
+						forward("msg1", "msg1(hello)" ,"qa0" ) 
+						forward("msg1", "msg1(hello2)" ,"qa0" ) 
 					}
+					 transition(edgeName="t00",targetState="work",cond=whenDispatch("msg1"))
+				}	 
+				state("work") { //this:State
+					action { //it:State
+						println("$name in ${currentState.stateName} | $currentMsg")
+						println("Working")
+					}
+					 transition(edgeName="t01",targetState="work",cond=whenDispatch("msg1"))
 				}	 
 			}
 		}
