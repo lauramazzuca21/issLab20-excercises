@@ -231,10 +231,10 @@ The system should be a distributed system, in which the Button and the Led run o
 	<bc>QActor</bc> user <bc>context</bc> ctxbutton {
 		<bc>State</bc> s0 <bc>initial</bc> { 	
 			<bc>println</bc>("user presses button")
-			emit button : button( on )
+			<bc>emit</bc> button : button( on )
 			<bc>delay</bc> 2500
 			<bc>println</bc>("user presses button")
-			emit button : button( off )
+			<bc>emit</bc> button : button( off )
 			<bc>terminate</bc> 0 
 		}
 	}</code>
@@ -246,13 +246,18 @@ The system should be a distributed system, in which the Button and the Led run o
 		<i>i)</i>define the <k>logical architecture</k> of the system  (hopefully as an executable model)
 	</div>
 <pre><code>
-    <bc>System</bc> sys_bls
+	<bc>System</bc> /*-trace*/ sys_bls
 
-<bc>Request</bc> 	cmdOn 	: cmdOn(ARG)
-<bc>Request</bc> 	cmdOff 	: cmdOff(ARG)
-<bc>Reply</bc> 		ack		: ack(ARG)
+//Request 	cmdOn 	: cmdOn(ARG)
+//Request 	cmdOff 	: cmdOff(ARG)
+//Reply 		ack		: ack(ARG)
+
 <bc>Event</bc> 		button  : button( KIND )
-<bc>Dispatch</bc>	blink	: blink(ARG) 
+<bc>Event</bc>		blink	: blink(ARG) 
+
+<bc>Dispatch</bc> 	cmdOn 	: cmdOn(ARG)
+<bc>Dispatch</bc> 	cmdOff 	: cmdOff(ARG)
+
 
 <bc>Context</bc> ctxlogicbutton <bc>ip</bc> [host="localhost" port=8010]
 <bc>Context</bc> ctxlogicled <bc>ip</bc> [host="127.0.0.1" port=8077]
@@ -260,97 +265,136 @@ The system should be a distributed system, in which the Button and the Led run o
 <bc>QActor</bc> button <bc>context</bc> ctxlogicbutton {
 		
 	<bc>State</bc> init <bc>initial</bc> {
-		<bc>println</bc>( "BUTTON init done. Default led and button state: Off" )
+		<bc>println</bc>( "BUTTON init done. Default initial led and button state: Off" )
 	}
-	<bc>Goto</bc> turningOff
+	<bc>Goto</bc> off
 
-	<bc>State</bc> turningOff {
-		<bc>request</bc> led <bc>-m</bc> cmdOff : cmdOff(0)
-	}
-	<bc>Transition</bc> t0 <bc>whenReply</bc> ack -> off
+//	State turningOff {
+//		request led -m cmdOff : cmdOff(0)
+//	}
+//	Transition t0 whenReply ack -> off
 	
 	<bc>State</bc> off {
-		<bc>printCurrentMessage</bc>
+//		printCurrentMessage
 		<bc>println</bc>("	BUTTON turned OFF	")
+		<bc>forward</bc> led <bc>-m</bc> cmdOff : cmdOff(1)
 	}
-	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> turningOn
+	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> on //turningOn
 
-	<bc>State</bc> turningOn {
-		<bc>request</bc> led <bc>-m</bc> cmdOn : cmdOn(1)
-	}
-	<bc>Transition</bc> t0 <bc>whenReply</bc> ack -> on
+//	State turningOn {
+//		request led -m cmdOn : cmdOn(1)
+//	}
+//	Transition t0 whenReply ack -> on
 	
 	<bc>State</bc> on {
-		<bc>printCurrentMessage</bc>
+		//printCurrentMessage
 		<bc>println</bc>("	BUTTON turned ON	")
+		<bc>forward</bc> led <bc>-m</bc> cmdOn : cmdOn(1)
+		
 	}
-	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> turningOff
+	<bc>Transition</bc> t0 <bc>whenEvent</bc> button -> off //turningOff
 	
 }
 
-/*For local test*/
+/*
+ * For local test
+ */
+
 <bc>QActor</bc> user <bc>context</bc> ctxlogicbutton {
-	<bc>State</bc> s0 <bc>initial</bc> { 	
-		<bc>delay</bc> 2500
+	<bc>State</bc> s0 initial { 	
+		delay 2500
 		<bc>println</bc>("USER presses button")
-		emit button : button( on )
-		<bc>delay</bc> 5500
+		<bc>emit</bc> button : button( on )
+		delay 5500
 		<bc>println</bc>("USER presses button")
-		emit button : button( off )
-		<bc>terminate</bc> 0 
+		<bc>emit</bc> button : button( off )
+		delay 500
+		<bc>println</bc>("USER presses button")
+		<bc>emit</bc> button : button( on )
+		delay 500
+		<bc>println</bc>("USER presses button")
+		<bc>emit</bc> button : button( off )
+		delay 500
+		<bc>println</bc>("USER presses button")
+		<bc>emit</bc> button : button( on )
+		delay 500
+		<bc>println</bc>("USER presses button")
+		<bc>emit</bc> button : button( off )
+		delay 500
+		terminate 0 
 	}
 	
 }
+ /* */
+
 
 <bc>QActor</bc> led <bc>context</bc> ctxlogicled {
 	
-	<bc>State</bc> init <bc>initial</bc> {
-        discardMsg On
+	[# var blink = 0 #]
+	
+	<bc>State</bc> init initial {
+		discardMsg On
 		<bc>println</bc>( "	LED init done." )
 	}
-	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOn -> on
-					<bc>whenRequest</bc> cmdOff -> off
+	<bc>Transition</bc> t0 	/*whenRequest*/<bc>whenMsg</bc> cmdOn -> on
+					/*whenRequest*/<bc>whenMsg</bc> cmdOff -> off
 	
 	<bc>State</bc> off {
-		<bc>onMsg</bc>(cmdOff : cmdOff(ARG)) {
-			[#  val V = payloadArg(0)
- 				val Answer = "ackTo_${V}" 
- 			#]
-			<bc>replyTo</bc> cmdOff with ack : ack($Answer)
-			<bc>println</bc>( "led has sent ACK with Answer: $Answer")
-		}
+//		onMsg(cmdOff : cmdOff(ARG)) {
+//			[#  val V = payloadArg(0)
+// 				val Answer = "ackTo_${V}" 
+// 			#]
+//			replyTo cmdOff with ack : ack($Answer)
+//			println( "led has sent ACK with Answer: $Answer")
+//		}
 		<bc>println</bc>( "led has been turned off")
 	} 
-	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOn -> on
+	<bc>Transition</bc> t0 	/*whenRequest*/<bc>whenMsg</bc> cmdOn -> on
 	
 	<bc>State</bc> on {
-		<bc>onMsg</bc>(cmdOn : cmdOn(ARG)) {
-			[#  val V = payloadArg(0)
- 				val Answer = "ackTo_${V}" 
- 			#]
-			<bc>replyTo</bc> cmdOn with ack : ack($Answer)
-			<bc>println</bc>( "led has sent ACK with Answer: $Answer")
-		}
+//		onMsg(cmdOn : cmdOn(ARG)) {
+//			[#  val V = payloadArg(0)
+// 				val Answer = "ackTo_${V}" 
+// 			#]
+//			replyTo cmdOn with ack : ack($Answer)
+//			println( "led has sent ACK with Answer: $Answer")
+//		}
 		
 		<bc>println</bc>( "led has been turned on" )
 	}
-	<bc>Goto</bc> blinkOn
+	<bc>Goto</bc> blinkOn //blink 
+	
+	/* 
+	Other way of handling blink. <em>Much better than using delay</em>, because it doesn't  prevent the state from handling cmOff if it arrives during blinking time
+	State blink {
+		if [# var blink == 0 #] {
+			println( "blink ON" )
+			[# var blink = 1 #]
+		} else {
+			println( "blink OFF" )
+			[# var blink = 0 #]
+		}
+		
+	} Transition t0 whenTime 500 -> blink
+	whenMsg cmdOff -> off //whenRequest*/
+	
 	
 	<bc>State</bc> blinkOn {
+		
 		<bc>println</bc>( "blink ON" )
-		<bc>delay</bc> 500
-		<bc>forward</bc> led <bc>-m</bc> blink : blink(off)
+		delay 500
+		<bc>emit</bc> blink : blink(off)
 	}
-	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOff -> off
-					<bc>whenMsg</bc> blink -> blinkOff
+	<bc>Transition</bc> t0 	/*whenRequest*/<bc>whenMsg</bc> cmdOff -> off
+					<bc>whenEvent</bc> blink -> blinkOff
 	
 	<bc>State</bc> blinkOff {
 		<bc>println</bc>( "blink OFF" )
-		<bc>delay</bc> 500
-		<bc>forward</bc> led <bc>-m</bc> blink : blink(on)
+		delay 500
+		<bc>emit</bc> blink : blink(on)
 	}
-	<bc>Transition</bc> t0 	<bc>whenRequest</bc> cmdOff -> off
-					<bc>whenMsg</bc> blink -> blinkOn
+	<bc>Transition</bc> t0 	/*whenRequest*/<bc>whenMsg</bc> cmdOff -> off
+					<bc>whenEvent</bc> blink -> blinkOn
 }
 </code>
 </div>

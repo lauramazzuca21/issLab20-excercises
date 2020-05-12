@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <!--
+<link rel="stylesheet" type="text/css" href="../css/issStyle1.css">
+<script type="text/javascript" src="../css/issStyle.js"></script>
+-->
+<style type="text/css">
+<!--
+body
+{
+    margin-left:  30px;
+    margin-right: 30px;
+};
+
+P
+{
+    font-family: Tahoma;
+    font-size: 10pt;
+};
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+a:hover {
+    background-color: #cccccc;
+}
+
+
+hr {
+    clear: both;
+    height: 1px;
+    color: #242424;
+    background-color: transparent;
+}
+
+h1, h2, h3 {
+    color: #242424;
+    clear: left;
+    font: 100% Tahoma, Helvetica, Arial, sans-serif;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+	border-radius: 10px;
+	padding: 5px;
+}
+
+top {
+	width: 100%;
+}
+
+
+#i {
+    color: #ff1010;
+}
+tt{
+	font-family: "Arial";
+    font-size: 80%;
+	color: #006600;
+}
+em{
+	font-family: "Arial";
+    font-size: 80%;
+	font-weight: bold;
+	border-style:solid;
+	border-color: #abe876;
+    color: #1632cc;
+}
+bc{
+	font-family: "Arial";
+	font-size: 80%;
+	font-weight: bold;
+    color: #990000;
+	background-color: #fcf8c7;
+}
+ks{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #0000CD	;
+	 
+}
+kc{
+	font-family: "Arial";
+	font-weight: bold;
+    color: #008000	;
+	 
+}
+pre{
+	font-family: "Consolas";
+	font-size: 85%;
+	background-color: #f5f5f5;
+	border: 1.5px solid silver;
+	padding: 5px;
+}
+m{
+	font-family: "Helvetica";
+	line-height: 100%;
+ 	font-size: 75%;
+}
+div.body{
+	width: 700px;
+    font-size: 15px;
+}
+k{
+    color: #990000;
+	font-weight: bold;
+}
+h1 {
+    font-size: 150%;
+    background-color: #b2c0ff;
+	padding: 10px; 
+}
+
+h2 {
+    background-color: #9ed8ff;
+    font-size: 130%;
+}
+
+h3 {
+	background-color: #e6ccff;
+    font-size: 100%;
+}
+h4 {
+    background-color: #C0F0E0;
+    font-size: 100%;
+	width: 95%;
+	border-radius: 5px;
+	padding: 2px;
+}
+h5 {
+    background-color: #d5ffb0;
+    font-size: 100%;
+	
+}    
+div.req{
+	background-color: #d9ffb3;
+    font-size: 18px;
+	width: 700px;
+    border: 3px solid green;
+    padding: 15px;
+    margin: 10px;
+}       
+div.remark{
+	background-color: #ffffff;	
+    border: 1.5px solid #d5f2ed;
+    padding: 15px;
+    margin: 10px;
+	border-radius: 25px;
+}  
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+} 
+
+ol, ul, li {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  padding-bottom: 5px;
+}     
+
+table, th, td {
+	border: 1px solid black;
+}
+
+img {
+	border: 1.5px solid #d5f2ed
+	
+}
+
+a, a:visited, a:active, a:link, a:hover {
+    text-decoration: underline;
+    color: #545454;
+    background-color: transparent;
+}
+
+div.wrapdesc{
+	width: 90%;
+	margin: auto;
+}
+
+div.imagedesc{
+	width: 85%;
+	margin: auto;
+}
+
+  -->
+</style>
+    
+<head>
+   
+<title>bls2020</title></head>
+    
+<body>
+<div id="top">
+<h1>BLS2020: The button-led system</h1>
+</div>  
+
+<div class="body"> 
+
+
+<h2>Introduction</h2>
+Case-studies based on the usage of one or more <i>button</i> and one or more <i>led</i> are simple but not simplistic, since
+they include the main aspects of information-processing systems: <bc>input</bc>, <bc>output </bc> and <bc>elaboration</bc>.
+<br/><br/>
+Since <k>there is no code without a project, no project without problem analysis and no problem without requirements</k>, let us
+present here a possible scenario related to the case-study <bc>led-blink</bc> proposed in:
+<a href="../../it.unibo.demoqak20/userdocs/ApplProposal0.html" target="lab">ApplProposal0.html | A set of tasks to do </a>.
+
+<br/><br/>
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+<h3>Concrete devices</h3>
+<img src="./img/buttonledconcrete.png" alt="buttonledconcrete" width="80%"  />
+</td>
+<td>Technology dependent layer.<br/><br/> 
+See for example:<br/> 
+<a href="../resources/it/unibo/bls/devices/mock/LedMock.java" target="code">LedMock.java</a><br/>
+<a href="../resources/it/unibo/bls/devices/gui/LedAsGui.java" target="code">LedAsGui.java</a><br/><br/>
+<a href="../resources/it/unibo/bls/devices/gui/ButtonAsGui.java" target="code">ButtonAsGui.java</a>
+</td>
+</tr>
+
+<tr>
+<td><h3>0 - Object oriented</h3>
+<img src="./img/blsoo.png" alt="blsoo" width="90%"  />
+</td>
+
+<td>The <i>button</i> is an 'active' object and the <i>led</i> is a <bc>'event listener'</bc>.
+See for example a  <a href="https://www.computerhope.com/jargon/e/event-listener.htm" target="web">definition of event listener</a>
+that requires some critical analysis. 
+<h4>Analysis</h4>
+<k><k>pros</k></k>: very efficient <br/>
+<k>cons</k>: the system solves only the problem at hand, no effort for a reusable architecture is made; also, the classes represent both the component and the control policy and, with this kind of interaction, the system is only runnable locally.
+<br>
+<bc>Prof </bc><br/>
+<k><k>pros</k></k>: very efficient <br/>
+<k>cons</k>: dal punto di vista logico non è per niente intuitivo che il listener debba essere il led. Inoltre non è così semplice, perché comunque si deve registrare il led al button, che può anche avvenire da un gestore del sistema.<br/>
+<bc>Considerations</bc><br/>
+È difficile esulare completamente da una tecnologia specifica.
+<br/><br/>
+See also the (horrible) system:<br/> 
+<li><a href="../resources/it/unibo/bls/devices/gui/ButtonAsGui.java" target="code">ButtonAsGui.java</a> </li>
+<li><a href="../resources/it/unibo/bls/devices/gui/LedListenerAsGui.java" target="code">LedListenerAsGui.java</a></li>
+<li><a href="../resources/it/unibo/bls/devices/gui/MainBlsGuiNaive.java" target="code">MainBlsGuiNaive.java</a></li>
+
+ </td>
+</tr>
+
+<tr>
+<td>
+<h3>1 - Actor-based </h3>
+<img src="./img/blsqak.png" alt="blsqak" width="90%"  />
+</td>
+<td>The <i>button</i> and the <i>led</i> are (qak) actors able to interact.<br/>
+<m>Technological details are hidden into a proper adapter' object.</m><br/>
+The problem is to define the <bc>'logical interaction'</bc> between them.<br/><br/>
+At the moment, we can introduce a model for the led:
+<a href="../src/ledalone.qak" target="code">ledalone.qak</a>
+
+<h4>Analysis</h4>
+<k>pros</k>: abstraction between the component and its software representation easy to model. <br/>
+<k>cons</k>: if only the button and the led actor are present, the control policies have to implemented in the button and/or the led. <br/>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<h3>2 - Actor-based: polling</h3>
+<img src="./img/blsqakpolling.png" alt="blsqakpolling" width="90%"  />
+</td>
+<td>The <i>button</i> and the <i>led</i> are (qak) actors able to interact.
+The  <i>led</i> sends a <bc>request</bc> to the <i>button</i> in order to know its state.
+<h4>Analysis</h4>
+<k>pros</k>: the led can percieve the button's change of state readily. <br/>
+<k>cons</k>: the polling system is very expensive in terms of communication. Most of the times there will be a negative answer from the button, so many useless messages will be exchanged between the actors. Also, the led has to know the button to be able to ask for its state.<br/>
+</td>
+</tr>
+
+<tr>
+<td>
+<h3>3 - Actor-based: direct call</h3>
+<img src="./img/blsqakcall.png" alt="blsqakcall" width="90%"  />
+</td>
+<td>
+The <i>button</i> forwards a <bc>dispatch</bc> to the <i>led</i> each time it changes its state.
+<h4>Analysis</h4>
+<k>pros</k>: the messages exchanged are reliable and only sent when the button changes state.<br/>
+<k>cons</k>: the button has to know the led to be able to send a message to it. <br/>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<h3>4 - Actor-based: events</h3>
+<img src="./img/blsqakevents.png" alt="blsqakevents" width="90%"  />
+</td>
+<td>
+The <i>button</i> emits an <bc>event</bc> each time it changes its state, hoping that the <i>led</i> can perceive it.
+<h4>Analysis</h4>
+<k>pros</k>: the button and led don't have to know each other in order to exchange messages.<br/>
+<k>cons</k>: an event is not a reliable message, so the button actor can't be sure that the led has actually received the message. <br/>
+<br>
+<bc>Prof </bc><br/>
+<k><k>pros</k></k>: <br/>
+<k>cons</k>: <br/>
+<bc>Considerations</bc><br/>
+Diamo per scontato che gli eventi arrivino dall'altro lato, ma esula dalla realizzazione. Poi, in un secondo momento, quando si passa ad analizzare la tecnologia giusta, allora se non ci sono tecnologie adeguate all'implementazione si può suggerire come analista dei requisiti un'altra tecnologia.
+</td>
+</tr>
+
+<tr>
+<td>
+<h3>5 - Actor-based: request </h3>
+<img src="./img/blsqakcallMazzuca.png" alt="blsqakcallMazzuca" width="60%"  />
+</td>
+<td>
+<h4>Analysis</h4>
+<k>pros</k>: the communication is reliable and status messages cand be exchanged to be able to adjust the state according to the other component's state.<br/>
+<k>cons</k>: the two actors have to know each other to be able to establish this kind of connection. <br/>
+</td>
+</tr>
+
+<tr>
+<td>
+<h3>6 - Introducing another component</h3>
+ 
+<img src="./img/blsqakcontrol.png" alt="blsqakcontrol" width="90%"  /><br/>
+ 
+</td>
+<td>
+The <i>button</i>  does not interact with the <i>led</i>, but with another component (<i>control</i>) that embeds the 
+<bc>'business logic'</bc>  of the system.
+<h4>Analysis</h4>
+<k>pros</k>: loose coupling makes for a better software architecture; this way if the button or the led become some other kind of I/O components it's easy to implement. Also, the control policies can be grouped inside the control actor. <br/>
+<k>cons</k>: none comes to mind. <br/>
+</td>
+</tr>
+
+<tr>
+<td>
+<h3>7 - The <i>control</i> as button-observer</h3>
+<img src="./img/blsqakeventcontrol.png" alt="blsqakeventcontrol" width="90%"  />
+
+</td>
+<td>
+The <i>control</i> is an 'observer' of the <i>button</i> since it is able to  <bc>perceive events</bc> emitted
+by the  <i>button</i>  when it changes its state.
+<h4>Analysis</h4>
+<k>pros</k>: the button and the control don't have to know each other.<br/>
+<k>cons</k>: as per [4], the only con that I can think of is the non-reliability of events. <br/>
+</td>
+</tr>
+
+<tr>
+<td>
+<h3>8 - All event-based observers </h3>
+<img src="./img/blsqakallevents.png" alt="blsqakallaevents.png" width="90%"  />
+
+</td>
+<td>
+ 
+<h4>Analysis</h4>
+<k>pros</k>: very light, no direct messages exchanged between any actors.<br/>
+<k>cons</k>: not a realiable communication in a distributed system.<br/>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<h3>9 - Embedding the <i>button</i></h3>
+<img src="./img/blsqakbuttonembedded.png" alt="blsqakbuttonembedded" width="60%"  />
+</td>
+<td>The <i>button</i>  is just a resource embedded into the <i>control</i> to allow human interaction.
+
+<h4>Analysis</h4>
+<k>pros</k>: there is no need for message exchange between the control and the button.<br/>
+<k>cons</k>: embedding a specific source of input in the control makes for a tightly coupled system, so if the button becomes a lever in the future the control actor has to be changed. <br/>
+</td>
+</tr>
+ 
+
+ 
+
+
+<tr>
+<td>
+<h3>10 - The  <i>button</i> in a browser</h3>
+<img src="./img/blsqakbrowser.png" alt="blsqakbrowser" width="80%"  />
+</td>
+<td>
+Human interaction is based on the usage of a browser provided by a <i>frontend</i> component that
+interacts in some way (to be designed) with the <i>control</i>.
+<h4>Analysis</h4>
+<k>pros</k>: no need to distributed client side application and the webside can be designed using standard technologies, such as HTML.  <br/>
+<k>cons</k>: the web communication model isn't good for all applications and, since it's a general purpose technology, it can't be optimized for a particular application. <br/></td>
+</tr>
+
+<tr> 
+<td>
+</td>
+<td></td>
+</tr>
+
+
+</table>
+
+<h2>Other considerations</h2>
+Regarding my idea for the system, I just wanted to clear up why I decided to implement it with the reqest-reply kind of communication: I had imagined the system would work as [10], but I ended up designing it as [5], hence the r-r communication. <br>
+I was wrong implementing the control for the led inside it and not making another "middle man" actor to act as intermediary between them. <br>
+The other reason why I designed the system that way was that I could be sure to match the states of the button with the state of the led, so that if the button was pressed it would actually change state if the led answered with an ack. I see now how this solution is expensive and not very realistic, since the button should be independent from the actual state of the led and a single button can control more than one led eventually.
+<br><br>
+
+<bc>PROF</bc>
+Se dovessimo produrre un button, dovremmo fargli avere la possibilità di essere usabile in qualsiasi modo, quindi andrebbe prodotto con un sistema ad eventi come software annesso e non con un dispatch.
+
+
+
+<!--
+<h2>BLSDChain </h2>  
+<div class="req">
+Design and build a <tt>Distributed</tt> software system   with one <tt>Button</tt> and a 
+<em>chain of Led</em> made of <tt>n>2</tt>:
+<a href="../resources/it/unibo/chain/segment7/LedSegment.kt" target="code">LedSegment.kt</a>.
+</div>	 
+<h3>Problem analysis</h3>
+Since we have more than two leds, our system can take several configurations:
+
+<center><table style="width:90%">
+<tbody>	
+
+<tr>
+<td style="width:35%"><img src="./img/chain0.png" alt="chain0" width="100%"  ></td>
+<td><em>Two nodes only</em> and the leds on a <bc>single node</bc>. The <tt>control</tt> should be in the node of the led.</td>
+</tr>
+
+<tr>
+<td style="width:35%"><img src="./img/chain01.png" alt="chain01" width="100%" ></td>
+<td><em>Two nodes only</em> and the leds on <bc>both the nodes</bc>. The <tt>control</tt> should be in one of the nodes 
+but which is better? </td>
+</tr>
+
+
+<tr>
+<td><img src="./img/chain1.png" alt="chain1" width="100%"  ></td>
+<td><em>More than two nodes</em>. The leds of the chain are spread on several nodes.
+The <tt>control</tt> should be ... </td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+</tr>
+
+</tbody>	
+</table></center>
+
+ <br/> 
+
+Suppose that, after a meeting with the customer, our reference configuration is <tt>More than two nodes</tt>
+with the <tt>control</tt> on the node of the <tt>button</tt>. In this case, with our previous approach,
+we should introduce a <tt>proxy-server</tt> pair for each led, even  when there are several leds on the same node.
+
+<br/><br/>
+Since this is quite impractical, an important <em>non-functional requirement</em> seems to arise at this point:
+<div class="req">
+Since different customers can decide to allocate the leds in different ways, we should design an 
+easily configurable software system. Moreover we should be able to build in automatic way the infrastructural 
+network support required to reach our applicative goals.
+</div>	 
+
+-->
+
+<table style="width:100%" border="1">
+<tr>
+<td style="width:50%">
+</td>
+<td></td>
+</tr>
+</table>
+	      	
+<br/>	
+</div>  
+
+<!--
+https://git-lfs.github.com/
+git lfs track "*.zip"
+git add pi3b+.zip
+git commit -m "Add sd file"
+git push origin master
+
+git lfs uninstall
+
+git config -l
+git config lfs.https://github.com/anatali/iss2020LabBo.git/info/lfs.locksverify false
+-->
+<div style="background-color:rgba(86, 56, 253, 0.9); width:100%;text-align:center;font-size:small;color:white">
+By AN Unibo-DISI  
+</div>
+</body>
+</html>
