@@ -19,25 +19,11 @@ class User ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope
 		return { //this:ActionBasciFsm
 				state("s0") { //this:State
 					action { //it:State
+						println("user presses button")
+						emit("button", "button(on)" ) 
 						delay(2500) 
-						println("USER presses button")
-						emit("button", "button(on)" ) 
-						delay(5500) 
-						println("USER presses button")
+						println("user presses button")
 						emit("button", "button(off)" ) 
-						delay(500) 
-						println("USER presses button")
-						emit("button", "button(on)" ) 
-						delay(500) 
-						println("USER presses button")
-						emit("button", "button(off)" ) 
-						delay(500) 
-						println("USER presses button")
-						emit("button", "button(on)" ) 
-						delay(500) 
-						println("USER presses button")
-						emit("button", "button(off)" ) 
-						delay(500) 
 						terminate(0)
 					}
 				}	 

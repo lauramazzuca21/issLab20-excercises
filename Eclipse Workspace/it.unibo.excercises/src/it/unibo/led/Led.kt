@@ -11,67 +11,25 @@ import kotlinx.coroutines.runBlocking
 class Led ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope ){
 
 	override fun getInitialState() : String{
-		return "init"
+		return "off"
 	}
 	@kotlinx.coroutines.ObsoleteCoroutinesApi
 	@kotlinx.coroutines.ExperimentalCoroutinesApi			
 	override fun getBody() : (ActorBasicFsm.() -> Unit){
-		 var blink = 0  
 		return { //this:ActionBasciFsm
-				state("init") { //this:State
-					action { //it:State
-						discardMessages = true
-						println("	LED init done.")
-					}
-					 transition(edgeName="t02",targetState="on",cond=whenDispatch("cmdOn"))
-					transition(edgeName="t03",targetState="off",cond=whenDispatch("cmdOff"))
-				}	 
 				state("off") { //this:State
 					action { //it:State
-						println("led has been turned off")
+						discardMessages = true
+						println("	Turned Off	")
 					}
-					 transition(edgeName="t04",targetState="on",cond=whenDispatch("cmdOn"))
+					 transition(edgeName="t02",targetState="on",cond=whenDispatch("cmdOn"))
 				}	 
 				state("on") { //this:State
 					action { //it:State
-						println("led has been turned on")
+						println("	Turned On	")
+						println("	=====Blinking=====	")
 					}
-					 transition( edgeName="goto",targetState="blink", cond=doswitch() )
-				}	 
-				state("blink") { //this:State
-					action { //it:State
-						if(  var blink == 0  )
-						{
-							println("blink ON")
-						 var blink = 1  
-						}
-						else
-						 {println("blink OFF")
-						  var blink = 0  
-						 }
-						stateTimer = TimerActor("timer_blink", 
-							scope, context!!, "local_tout_led_blink", 500.toLong() )
-					}
-					 transition(edgeName="t05",targetState="blink",cond=whenTimeout("local_tout_led_blink"))   
-					transition(edgeName="t06",targetState="off",cond=whenDispatch("cmdOff"))
-				}	 
-				state("blinkOn") { //this:State
-					action { //it:State
-						println("blink ON")
-						delay(500) 
-						emit("blink", "blink(off)" ) 
-					}
-					 transition(edgeName="t07",targetState="off",cond=whenDispatch("cmdOff"))
-					transition(edgeName="t08",targetState="blinkOff",cond=whenEvent("blink"))
-				}	 
-				state("blinkOff") { //this:State
-					action { //it:State
-						println("blink OFF")
-						delay(500) 
-						emit("blink", "blink(on)" ) 
-					}
-					 transition(edgeName="t09",targetState="off",cond=whenDispatch("cmdOff"))
-					transition(edgeName="t010",targetState="blinkOn",cond=whenEvent("blink"))
+					 transition(edgeName="t03",targetState="off",cond=whenDispatch("cmdOff"))
 				}	 
 			}
 		}

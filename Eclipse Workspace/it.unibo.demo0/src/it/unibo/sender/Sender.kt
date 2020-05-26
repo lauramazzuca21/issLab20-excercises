@@ -20,13 +20,9 @@ class Sender ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, sco
 				state("s0") { //this:State
 					action { //it:State
 						forward("msg1", "msg1(1)" ,"demo" ) 
-						delay(300) 
 						forward("msg1", "msg1(2)" ,"demo" ) 
-						delay(300) 
 						forward("msg1", "msg1(3)" ,"demo" ) 
-						delay(300) 
 						forward("msg2", "msg2(1)" ,"demo" ) 
-						delay(300) 
 						forward("msg2", "msg2(2)" ,"demo" ) 
 					}
 				}	 

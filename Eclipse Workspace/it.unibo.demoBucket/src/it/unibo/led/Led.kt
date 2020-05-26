@@ -23,6 +23,7 @@ class Led ( name: String, scope: CoroutineScope  ) : ActorBasicFsm( name, scope 
 				state("s0") { //this:State
 					action { //it:State
 						println("led started")
+						forward("config", "config(ledgui)" ,"led" ) 
 					}
 					 transition(edgeName="t00",targetState="doConfig",cond=whenDispatch("config"))
 				}	 
